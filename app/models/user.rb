@@ -12,6 +12,11 @@ class User < ApplicationRecord
     find_or_cerate_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
+    end
+  end
+  
+  def guest_user?
+    email == GUEST_USER_EMAIL
   end
 
   def get_profile_image(width, height)
