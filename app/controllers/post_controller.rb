@@ -6,8 +6,11 @@ class PostController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to root_path
+    if @post.save
+      redirect_to root_path
+    else
+      render action: :new
+    end
   end
 
   def edit
@@ -22,9 +25,8 @@ class PostController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, list_attributes: [:id, :list_id, :content, :position, :_destroy])
 
   end
-
 
 end
