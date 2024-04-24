@@ -10,7 +10,7 @@ import "channels"
 
 
 require('jquery')
-import "cocoon";
+require("@nathanvda/cocoon")
 
 Rails.start()
 Turbolinks.start()

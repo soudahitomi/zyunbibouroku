@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  
+
   def new
     @post = Post.new
+    @post.lists.build
   end
 
   def create
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:title, :body, list_attributes: [:id, :list_id, :content, :position, :_destroy])
+    params.require(:post).permit(:title, :body, lists_attributes: [:id, :content, :position, :_destroy])
 
   end
 

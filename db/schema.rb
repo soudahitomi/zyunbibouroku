@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2024_04_22_103827) do
   end
 
   create_table "lists", force: :cascade do |t|
-    t.integer "posts_id"
+    t.integer "post_id"
     t.integer "position"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
