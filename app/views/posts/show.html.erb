@@ -1,0 +1,31 @@
+<h1>postshow</h1>
+
+<div>
+<%= image_tag @post.user.get_profile_image(100,100) %>
+<%= @post.user.name %>
+<%= @post.title %>
+<%= @post.list.content %>
+
+<%= @post.created_at.strftime('%Y/%m/%d') %>
+<% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
+  <% end %>
+</div>
+<div>
+  <p>コメント件数：<%= @post.comments.count %></p>
+  <% @post.comments.each do |comment| %>
+    <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
+    <% if comment.user == current_user %>
+      <%= link_to "削除", root_path, method: :delete %><!--ここのリダイレクト先も編集する-->
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
