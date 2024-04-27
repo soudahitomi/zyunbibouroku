@@ -3,7 +3,6 @@
 <%= form_with model: @post, local: true do |f| %>
   <h3>リスト名</h3>
   <%= f.text_field :title %>
-  <!--<%#= f.text_area :body %>-->
 <div>
   <%= f.fields_for :lists do |t| %>
   <% render 'list_fields', f: t %>
