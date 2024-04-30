@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :posts,only: [:new, :create, :edit, :update, :show] do
     resources :comments,only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
+  get "/seach", to: "seaches#seach"
   end
 end
