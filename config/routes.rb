@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
-  resources :users,only: [:edit, :update]
-  resources :posts,only: [:new, :create, :edit, :update, :show] do
+  resources :users,only: [:edit, :update, :index]
+  resources :posts,only: [:new, :create, :edit, :update, :show, :index] do
     resources :comments,only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
-  get "/seach", to: "seaches#seach"
   end
+get "/seach", to: "seaches#seach"
 end
