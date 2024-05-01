@@ -9,8 +9,11 @@
 <%= @post.title %>
 </div>
 <div>
+<!--<= @post.lists.content %>-->
 
-<%= @list.content %>
+<% @post.lists.each do |list| %>
+<%= list.content %>
+<% end %>
 
 </div>
 
