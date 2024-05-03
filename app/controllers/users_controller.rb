@@ -11,6 +11,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def show
+    @user = User.find(current_user.id)
+    @posts = @user.posts
+  end
+
   private
 
 
