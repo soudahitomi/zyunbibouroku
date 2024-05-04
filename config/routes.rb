@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resources :comments,only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
   end
+  resources :lists,only: [:update]
 get "/search", to: "searches#search"
 end

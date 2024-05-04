@@ -1,1 +1,16 @@
 Topページ
+<div>
+<% @posts.each do |post| %>
+  <%= post.title %>
+
+<div>
+  <% post.lists.each do |list| %>
+  <%= form_with model:list, url:list_path(list.id) do |f| %>
+  <%= f.check_box :checked %>
+  <%= list.content %>
+  <%= f.submit "更新" %>
+  <% end %>
+  <% end %>
+</div>
+<% end %>
+</div>

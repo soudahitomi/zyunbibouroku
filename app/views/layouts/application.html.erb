@@ -12,6 +12,8 @@
 
   <body>
     <header>
+      <a href="/"><h1>準備忘録</h1></a>
+
       <%= render "searches/form" %>
       <% if user_signed_in? %>
         <%= image_tag current_user.get_profile_image(100,100) %>

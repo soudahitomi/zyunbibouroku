@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2024_04_27_091543) do
     t.integer "post_id"
     t.integer "position"
     t.string "content"
+    t.boolean "checked", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
