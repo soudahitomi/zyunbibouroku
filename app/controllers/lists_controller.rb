@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   def update
     list = List.find(params[:id])
     list.update(list_params)
-    redirect_to root_path
+    redirect_to posts_path
   end
 
   private

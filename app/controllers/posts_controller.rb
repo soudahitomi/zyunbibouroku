@@ -16,14 +16,19 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @timeline = Post.all
+    @posts = current_user.posts
+    @post = Post.find(current_user.id)
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
-
+    post = Post.find(params[:id])
+    post.update(post_params)
+    redirect_to posts_path
   end
 
   def show
@@ -36,7 +41,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:title, :body, lists_attributes: [:id, :content, :position, :_destroy])
+    params.require(:post).permit(:title, lists_attributes: [:id, :content, :position, :_destroy])
 
   end
 

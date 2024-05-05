@@ -17,6 +17,7 @@
       <%= render "searches/form" %>
       <% if user_signed_in? %>
         <%= image_tag current_user.get_profile_image(100,100) %>
+        <%= current_user.name %>
           <% unless current_user.guest_user? %>
             <li>
               <%= link_to "編集", edit_user_path(current_user.id) %>

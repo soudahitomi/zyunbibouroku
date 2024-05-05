@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update
-    redirect_to root_path
+    redirect_to posts_path
   end
 
   def edit
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+
   end
 
   private

@@ -1,2 +1,16 @@
 <h1>Post#edit</h1>
-<p>Find me in app/views/post/edit.html.erb</p>
+
+
+<%= form_with model: @post, local: true do |f| %>
+  <h3>リスト名</h3>
+  <%= f.text_field :title %>
+<div>
+  <%= f.fields_for :lists do |t| %>
+  <% render 'list_fields', f: t %>
+  <% end %>
+
+  <%= link_to_add_association "追加", f, :lists %>
+</div>
+<%= f.submit "更新" %>
+
+<% end %>
