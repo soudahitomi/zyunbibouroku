@@ -1,53 +1,53 @@
 <h1>postshow</h1>
 
 <div>
-<%= image_tag @post.user.get_profile_image(100,100) %>
-<div>
-<%= @post.user.name %>
-</div>
-<div>
-<%= @post.title %>
-</div>
-<div>
-<!--<= @post.lists.content %>-->
+  <%= image_tag @post.user.get_profile_image(100,100) %>
 
-<% @post.lists.each do |list| %>
-<%= list.content %>
-<% end %>
+  <div>
+    <%= @post.user.name %>
+  </div>
 
-</div>
+  <div>
+    <%= @post.title %>
+  </div>
 
-<%= @post.created_at.strftime('%Y/%m/%d') %>
-<% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post.id), method: :delete %>
-  <% end %>
+  <div>
+    <% @post.lists.each do |list| %>
+      <%= list.content %>
+    <% end %>
+  </div>
 
-  <% if @post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorite_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %>
-      <% end %>
-    </p>
+  <%= @post.created_at.strftime('%Y/%m/%d') %>
+    <% if @post.user == current_user %>
+      <%= link_to "削除", post_path(@post.id), method: :delete %>
+    <% end %>
+
+    <% if @post.favorited_by?(current_user) %>
+      <p>
+        <%= link_to post_favorite_path(@post), method: :delete do %>
+          ♥<%= @post.favorites.count %>
+        <% end %>
+      </p>
     <% else %>
-    <p>
-      <%= link_to post_favorite_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
+      <p>
+        <%= link_to post_favorite_path(@post), method: :post do %>
+          ♡<%= @post.favorites.count %> いいね
+        <% end %>
+      </p>
+    <% end %>
 
 </div>
 
 <div>
   <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-    <%= comment.user.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
-    <% if comment.user == current_user %>
-      <%= link_to "削除", root_path, method: :delete %><!--ここのリダイレクト先も編集する-->
+    <% @post.comments.each do |comment| %>
+      <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+      <%= comment.user.name %>
+      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
+      <% if comment.user == current_user %>
+        <%= link_to "削除", root_path, method: :delete %><!--ここのリダイレクト先も編集する-->
+      <% end %>
     <% end %>
-  <% end %>
 </div>
 
 <div>
