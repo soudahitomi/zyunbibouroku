@@ -1,2 +1,38 @@
-Topページ
-<h1>ログインして始めよう！</h1>
+
+<h1>Topページ</h1>
+
+<div>
+<% @posts.each do |post| %>
+  <%= post.title %>
+
+<div>
+  <% post.lists.each do |list| %>
+  <%= form_with model:list, url:list_path(list.id) do |f| %>
+  <%= f.check_box :checked %>
+  <%= list.content %>
+  <%= f.submit "更新" %>
+  <% end %>
+  <% end %>
+</div>
+
+<% end %>
+</div>
+<%= link_to "投稿編集", edit_post_path(@post.id) %>
+
+
+<% @timeline.each do |post| %>
+<div>
+<%= image_tag post.user.get_profile_image(100,100) %>
+<div>
+<%= post.user.name %>
+</div>
+<div>
+<%= post.title %>
+</div>
+<div>
+<!--<= @post.lists.content %>-->
+
+<% post.lists.each do |list| %>
+<%= list.content %>
+<% end %>
+<% end %>

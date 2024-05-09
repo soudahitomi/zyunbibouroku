@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+before_action :authenticate_user!
 
   def new
     @post = Post.new
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find(current_user.id)
   end
 
   def update
