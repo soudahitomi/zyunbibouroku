@@ -19,11 +19,11 @@ before_action :authenticate_user!
   def index
     @timeline = Post.all
     @posts = current_user.posts
-    @post = Post.find(current_user.id)
+    
   end
 
   def edit
-    @post = Post.find(current_user.id)
+    @post = Post.find(params[:id])
   end
 
   def update
