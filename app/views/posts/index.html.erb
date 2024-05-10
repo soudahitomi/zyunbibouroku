@@ -3,7 +3,7 @@
 <div>
   <% @posts.each do |post| %>
     <%= post.title %>
-
+    <%= link_to "投稿編集", edit_post_path(post.id) %>
   <div>
       <% post.lists.each do |list| %>
 
@@ -16,7 +16,7 @@
       <% end %>
   </div>
 
-  <%= link_to "投稿編集", edit_post_path(post.id) %>
+
 
   <% end %>
 </div>
@@ -26,7 +26,9 @@
 <% @timeline.each do |post| %>
 
   <div>
-    <%= image_tag post.user.get_profile_image(100,100) %>
+    <%= link_to user_path(post.id) do %>
+      <%= image_tag post.user.get_profile_image(100,100) %>
+    <% end %>
     <div>
       <%= post.user.name %>
     </div>

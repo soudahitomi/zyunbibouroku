@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'posts#index'
-  resources :users,only: [:edit, :update, :index, :show]
-    resource :relationships, only[:create, :destoy]
+
+  resources :users,only: [:edit, :update, :index, :show] do
+    resource :relationships, only: [:create, :destoy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
+  end
+
   resources :posts,only: [:new, :create, :edit, :update, :show, :index] do
     resources :comments,only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
