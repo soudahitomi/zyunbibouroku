@@ -1,4 +1,4 @@
-class CreateRerationships < ActiveRecord::Migration[6.1]
+class CreateRelationships < ActiveRecord::Migration[6.1]
   def change
     create_table :rerationships do |t|
       t.integer :follower_id
