@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destoy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
-      mem
-      ber do
-        get :faborites
+
+      member do
+        get :favorites
       end
   end
 

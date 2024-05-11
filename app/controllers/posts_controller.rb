@@ -19,7 +19,7 @@ before_action :authenticate_user!
   def index
     @timeline = Post.all
     @posts = current_user.posts
-    
+    #@post = Post.find(params[:id])
   end
 
   def edit
@@ -36,7 +36,6 @@ before_action :authenticate_user!
     @post = Post.find(params[:id])
     @comment = Comment.new
   end
-
 
   private
 

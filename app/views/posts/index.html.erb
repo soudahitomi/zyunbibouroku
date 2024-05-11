@@ -1,6 +1,8 @@
 <h1>ログイン後の遷移ページ</h1>
 
+<%= link_to "いいねした投稿", favorites_user_path(current_user) %>
 <div>
+
   <% @posts.each do |post| %>
     <%= post.title %>
     <%= link_to "投稿編集", edit_post_path(post.id) %>
