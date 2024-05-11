@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destoy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
+      mem
+      ber do
+        get :faborites
+      end
   end
 
   resources :posts,only: [:new, :create, :edit, :update, :show, :index] do
