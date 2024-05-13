@@ -4,8 +4,12 @@ class CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment = current_user.comments.new(comment_params)
     comment.post_id = post.id
-    comment.save
-    redirect_to post_path(post.id)
+    if comment.save
+      redirect_to post_path(post.id)
+    else
+      @post = Post.find(params[:id])
+      @comment = Comment.new
+      render "posts/show"
   end
 
   def destroy
