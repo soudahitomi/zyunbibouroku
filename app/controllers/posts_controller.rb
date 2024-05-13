@@ -41,7 +41,7 @@ before_action :authenticate_user!
 
 
   def post_params
-    params.require(:post).permit(:title, lists_attributes: [:id, :content, :position, :_destroy])
+    params.require(:post).permit(:title, lists_attributes: [:id, :content, :_destroy])
 
   end
 

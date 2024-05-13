@@ -36,14 +36,18 @@
     <div>
       <%= post.user.name %>
     </div>
-
-    <div>
-      <%= post.title %>
-    </div>
-  <div>
-
-  <% post.lists.each do |list| %>
-    <%= list.content %>
-  <% end %>
+    
+    <%= link_to post_path(post.id) do %>
+      <div>
+        <%= post.title %>
+      </div>
+      <div>
+        <% post.lists.each do |list| %>
+          <%= list.content %>
+        <% end %>
+      </div>
+    <% end %>
+    
+  </div>
 <% end %>
 
