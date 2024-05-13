@@ -5,6 +5,16 @@ class ListsController < ApplicationController
     redirect_to posts_path
   end
 
+  def move_higher
+    List.find(params[:id]).move_higher
+    redirect_to posts_path
+  end
+
+  def move_lower
+    List.find(params[:id]).move_lower
+    redirect_to posts_path
+  end
+
   private
 
   def list_params

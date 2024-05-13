@@ -5,7 +5,8 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
-  
+  acts_as_list
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

@@ -21,6 +21,13 @@ Rails.application.routes.draw do
     resources :comments,only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
   end
-  resources :lists,only: [:update]
+
+  resources :lists,only: [:update] do
+    member do
+      get :move_higher
+      get :move_lower
+    end
+  end
+
 get "/search", to: "searches#search"
 end
