@@ -1,26 +1,25 @@
 <h1>ログイン後の遷移ページ</h1>
 
 <%= link_to "いいねした投稿", favorites_user_path(current_user) %>
+<h4>フォロー</h4>
+<%= link_to "フォロー数", user_followings_path(current_user) %>
 <div>
 
   <% @posts.each do |post| %>
     <%= post.title %>
     <%= link_to "投稿編集", edit_post_path(post.id) %>
-  <div>
-      <% post.lists.each do |list| %>
+        <% post.lists.order(:position).each do |list| %>
+        <div>
+          <%= form_with model:list, url:list_path(list.id) do |f| %>
+            <%= f.check_box :checked %>
+            <%= list.content %>
+            <%= link_to "↑", move_higher_list_path(list) %>
+            <%= link_to "↓", move_lower_list_path(list) %>
+            <%= f.submit "更新" %>
+          <% end %>
+          
 
-        <%= form_with model:list, url:list_path(list.id) do |f| %>
-          <%= f.check_box :checked %>
-          <%= list.content %>
-          <%= link_to "↑", move_higher_list_path(list) %>
-          <%= link_to "↓", move_lower_list_path(list) %>
-          <%= f.submit "更新" %>
         <% end %>
-
-      <% end %>
-  </div>
-
-
 
   <% end %>
 </div>
@@ -36,7 +35,7 @@
     <div>
       <%= post.user.name %>
     </div>
-    
+
     <%= link_to post_path(post.id) do %>
       <div>
         <%= post.title %>
@@ -47,7 +46,7 @@
         <% end %>
       </div>
     <% end %>
-    
+
   </div>
 <% end %>
 

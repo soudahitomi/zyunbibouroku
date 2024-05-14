@@ -1,4 +1,4 @@
 class List < ApplicationRecord
-  belongs_to :post
   acts_as_list
+  belongs_to :post
 end

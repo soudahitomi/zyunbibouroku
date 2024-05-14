@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
   def index
     @timeline = Post.all
-    @posts = current_user.posts.order(:position)
+    @posts = current_user.posts
   end
 
   def edit
