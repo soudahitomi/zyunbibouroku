@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
       @post = Post.find(params[:id])
       @comment = Comment.new
       render "posts/show"
+    end
   end
 
   def destroy
