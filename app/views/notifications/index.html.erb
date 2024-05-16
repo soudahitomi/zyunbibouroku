@@ -1,0 +1,7 @@
+
+
+                <% @notifications.each do |notification| %>
+                  <%= link_to notification_message(notification), notification_path(notification), method: :patch, class: "dropdown-item" %>
+                <% end %>
+
+                

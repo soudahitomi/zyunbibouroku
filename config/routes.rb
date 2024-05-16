@@ -17,17 +17,19 @@ Rails.application.routes.draw do
       end
   end
 
-  resources :posts,only: [:new, :create, :edit, :update, :show, :index] do
+  resources :posts, only: [:new, :create, :edit, :update, :show, :index] do
     resources :comments,only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
   end
 
-  resources :lists,only: [:update] do
+  resources :lists, only: [:update] do
     member do
       get :move_higher
       get :move_lower
     end
   end
+
+  resources :notifications, only: [:index, :update]
 
 get "/search", to: "searches#search"
 end
