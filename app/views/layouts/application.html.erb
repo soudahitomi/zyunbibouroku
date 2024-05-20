@@ -16,11 +16,11 @@
       <%= render "searches/form" %>
       <% if user_signed_in? %>
         <%= link_to posts_path do %>
-          <img src="/assets/logo.jpg" alt="50×50">
+          <img src="/assets/logo.jpg" width="100" height="100" alt="">
         <% end %>
       <% unless %>
         <%= link_to root_path do %>
-          <img src="/assets/logo.jpg" alt="50×50">
+          <img src="/assets/logo.jpg" alt="">
         <% end %>
       <% end %>
     </header>
