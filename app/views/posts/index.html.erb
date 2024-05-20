@@ -4,7 +4,7 @@
     <div class="col-2">
       <% if user_signed_in? %>
         <%= link_to "投稿", new_post_path %>
-        <%= image_tag current_user.get_profile_image(100,100) %>
+        <%= image_tag current_user.get_profile_image(80,80), class: "rounded-circle" %>
         <%= current_user.name %>
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
@@ -26,29 +26,11 @@
           <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
         </li>
       <% end %>
+      <%= link_to "いいねした投稿", favorites_user_path(current_user) %>
+      <%= link_to "フォロー数", user_followings_path(current_user) %>
     </div>
 
-<%= link_to "いいねした投稿", favorites_user_path(current_user) %>
-<%= link_to "フォロー数", user_followings_path(current_user) %>
-
-  <% @posts.each do |post| %>
-    <%= post.title %>
-    <%= link_to "投稿編集", edit_post_path(post.id) %>
-    <% post.lists.order(:position).each do |list| %>
-      <div>
-        <%= form_with model:list, url:list_path(list.id) do |f| %>
-            <%= f.check_box :checked %>
-            <%= list.content %>
-            <%= link_to "↑", move_higher_list_path(list) %>
-            <%= link_to "↓", move_lower_list_path(list) %>
-            <%= f.submit "更新" %>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
-
-
-
+    <div class="col-8">
 
 <% @timeline.each do |post| %>
 
@@ -73,5 +55,24 @@
 
   </div>
 <% end %>
+</div>
+
+<div class="col-2">
+<% @posts.each do |post| %>
+    <%= post.title %>
+    <%= link_to "投稿編集", edit_post_path(post.id) %>
+    <% post.lists.order(:position).each do |list| %>
+      <div>
+        <%= form_with model:list, url:list_path(list.id) do |f| %>
+            <%= f.check_box :checked %>
+            <%= list.content %>
+            <%= link_to "↑", move_higher_list_path(list) %>
+            <%= link_to "↓", move_lower_list_path(list) %>
+            <%= f.submit "更新" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
       </div>
     </div>
