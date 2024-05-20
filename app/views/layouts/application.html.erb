@@ -13,46 +13,27 @@
 
   <body>
     <header>
-      <%= render "searches/form" %>
-      <% if user_signed_in? %>
-        <%= link_to posts_path do %>
-          <img src="/assets/logo.jpg" width="100" height="100" alt="">
-        <% end %>
-      <% unless %>
-        <%= link_to root_path do %>
-          <img src="/assets/logo.jpg" alt="">
-        <% end %>
-      <% end %>
+      <div class="row mt-4">
+
+        <div class="col-8">
+          <% if user_signed_in? %>
+            <%= link_to posts_path do %>
+              <img src="/assets/logo.jpg" width="100" height="100" alt="">
+            <% end %>
+          <% else %>
+            <%= link_to root_path do %>
+              <img src="/assets/logo.jpg" width="100" height="100" alt="">
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="col-4">
+          <%= render "searches/form" %>
+        </div>
+      </div>
     </header>
 
     <main>
-      <% if user_signed_in? %>
-        <%= link_to "投稿", new_post_path %>
-        <%= image_tag current_user.get_profile_image(100,100) %>
-        <%= current_user.name %>
-
-          <% unless current_user.guest_user? %>
-            <li>
-              <%= link_to "編集", edit_user_path(current_user.id) %>
-            </li>
-          <% end %>
-
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-        <li>
-          <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
-        </li>
-          <% end %>
-        <% end %>
       <%= yield %>
     </main>
   </body>
