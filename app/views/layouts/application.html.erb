@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <script src="https://kit.fontawesome.com/67d14ad52e.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,21 +13,34 @@
 
   <body>
     <header>
-      <a href="/"><h1>準備忘録</h1></a>
-
       <%= render "searches/form" %>
-
       <% if user_signed_in? %>
+        <%= link_to posts_path do %>
+          <img src="/assets/logo.jpg" alt="50×50">
+        <% end %>
+      <% unless %>
+        <%= link_to root_path do %>
+          <img src="/assets/logo.jpg" alt="50×50">
+        <% end %>
+      <% end %>
+    </header>
+
+    <main>
+      <% if user_signed_in? %>
+        <%= link_to "投稿", new_post_path %>
         <%= image_tag current_user.get_profile_image(100,100) %>
         <%= current_user.name %>
+
           <% unless current_user.guest_user? %>
             <li>
               <%= link_to "編集", edit_user_path(current_user.id) %>
             </li>
           <% end %>
+
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
+
       <% else %>
         <li>
           <%= link_to "新規登録", new_user_registration_path %>
@@ -38,10 +51,9 @@
         <li>
           <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
         </li>
-      <% end %>
-
-    </header>
-    <%= link_to "投稿", new_post_path %>
-    <%= yield %>
+          <% end %>
+        <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>
