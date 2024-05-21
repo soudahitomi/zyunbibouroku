@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class Public::ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :admin_controller?
   before_action :configre_permitted_parameters, if: :devise_controller?
 
