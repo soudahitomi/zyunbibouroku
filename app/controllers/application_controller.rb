@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:top]
+  before_action :authenticate_user!, unless: :admin_controller?
   before_action :configre_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
@@ -10,9 +10,13 @@ class ApplicationController < ActionController::Base
     posts_path
   end
 
-  protected
+  private
 
-    def configre_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
-    end
+  def admin_controller?
+    self.class.module_parent_name == 'Admin'
+  end
+
+  def configre_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
+  end
 end
