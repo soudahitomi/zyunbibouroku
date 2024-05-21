@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     posts_path
   end
 
-  private
+  protected
 
     def configre_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
