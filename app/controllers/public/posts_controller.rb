@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @timeline = Post.all
+    @timeline = Post.page(params[:page]).per(8)
     @posts = current_user.posts
   end
 

@@ -18,6 +18,7 @@
     </div>
 
     <div class="col-6">
+      <div class="scroll-list">
       <% @timeline.each do |post| %>
 
         <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
@@ -52,7 +53,9 @@
           </div><!--card-body-->
         </div><!--card-->
       <% end %>
+      <%= paginate @timeline %>
     </div><!--col-6閉-->
+    </div>
 
     <div class="col-4">
       <% @posts.each do |post| %>

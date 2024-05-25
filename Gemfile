@@ -60,3 +60,5 @@ gem 'devise'
 gem 'cocoon'
 
 gem 'acts_as_list'
+
+gem 'kaminari'
