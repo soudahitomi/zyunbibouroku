@@ -9,7 +9,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-    posts_path
+    root_path
   end
 
   # GET /resource/sign_in
@@ -36,7 +36,7 @@ class Public::SessionsController < Devise::SessionsController
 
   private
 
-  def configre_permitted_parameters
+  def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
   end
 end
