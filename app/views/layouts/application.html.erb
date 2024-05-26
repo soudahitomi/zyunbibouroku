@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <script src="https://kit.fontawesome.com/67d14ad52e.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -15,7 +15,7 @@
     <header>
       <div class="row">
 
-        <div class="col-8">
+        <div class="col-7">
           <% if user_signed_in? %>
             <%= link_to root_path do %>
               <img src="/assets/logo.jpg" width="150" height="150" alt="">
@@ -23,14 +23,16 @@
           <% end %>
         </div>
 
-        <div class="col-4 mt-5">
+        <div class="col-1 mt-5">
           <% if user_signed_in? %>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark" %>
           <% else %>
             <%= link_to "新規登録", new_user_registration_path %>
             <%= link_to "ログイン", new_user_session_path %>
           <% end %>
+        </div>
 
+        <div class="col-4 mt-5">
           <%= render "public/searches/form" %>
         </div>
 

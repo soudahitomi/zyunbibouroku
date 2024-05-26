@@ -22,13 +22,10 @@ Turbolinks.start()
 ActiveStorage.start()
 
 // 無限スクロールの処理
-$(window).on('scroll', function() {
-    scrollHeight = $(document).height();
-    scrollPosition = $(window).height() + $(window).scrollTop();
-    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-          $('.jscroll').jscroll({
-            contentSelector: '.scroll-list',
-            nextSelector: 'span.next:last a'
-          });
-    }
-});
+var jscrollOption = {
+    loadingHtml: '読み込み中・・・', //記事読み込み中の表示
+    autoTrigger: true, // 自動で読み込むか否か、trueで自動、falseでボタンクリックとなる。
+    padding: 20, // 指定したコンテンツの下かた何pxで読み込むかを指定(autoTrigger: trueの場合のみ)
+    contentSelector: '.jscroll' // 読み込む範囲の指定
+};
+$('.jscroll').jscroll(jscrollOption);

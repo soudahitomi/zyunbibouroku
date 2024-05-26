@@ -1,24 +1,42 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-        <%= link_to "投稿", new_post_path %>
-        <%= image_tag current_user.get_profile_image(80,80), class: "rounded-circle" %>
-        <%= current_user.name %>
-        <%= link_to "いいねした投稿", favorites_user_path(current_user) %>
-        <%= link_to "通知", notifications_path %>
-        <h6>フォロー</h6>
-          <%= link_to current_user.followings.count, user_followings_path(current_user) %>
-        <h6>フォロワー</h6>
-          <%= link_to current_user.followers.count, user_followers_path(current_user) %>
+      <div class="pull-left">
+        <%= image_tag current_user.get_profile_image(90,90), class: "rounded-circle" %>
+        <span><%= current_user.name %></span>
+        <div>
+          <span>フォロー</span>
+          <span><%= link_to current_user.followings.count, user_followings_path(current_user), class: "text-dark" %></span>
+        </div>
+        <div>
+          <span>フォロワー</span>
+          <span><%= link_to current_user.followers.count, user_followers_path(current_user), class: "text-dark" %></span>
+        </div>
+
+        <%= link_to new_post_path, class: "btn btn-outline-success btn-lg rounded-pill mt-5" do %>
+          <i class="fa-regular fa-message"></i> 投稿
+        <% end %>
+        <div>
+          <%= link_to favorites_user_path(current_user), class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
+            <i class="fa-regular fa-heart"></i> 通知
+          <% end %>
+        </div>
+        <div>
+          <%= link_to notifications_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
+            <i class="fa-regular fa-bell"></i> いいね一覧
+          <% end %>
+        </div>
+
           <% unless current_user.guest_user? %>
               <li>
                 <%= link_to "編集", edit_user_path(current_user.id) %>
               </li>
           <% end %>
+      </div>
     </div>
 
     <div class="col-6">
-      <div class="scroll-list">
+
       <% @timeline.each do |post| %>
 
         <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
@@ -55,28 +73,45 @@
       <% end %>
       <%= paginate @timeline %>
     </div><!--col-6閉-->
-    </div>
 
     <div class="col-4">
-      <% @posts.each do |post| %>
-        <div>
-          <%= link_to post_path(post) do %>
-            <%= post.title %>
-          <% end %>
-          <%= link_to "投稿編集", edit_post_path(post.id) %>
-          <% post.lists.order(:position).each do |list| %>
-              <div>
-                <%= form_with model:list, url:list_path(list.id) do |f| %>
-                  <%= f.check_box :checked %>
-                  <%= list.content %>
-                  <%= link_to "↑", move_higher_list_path(list) %>
-                  <%= link_to "↓", move_lower_list_path(list) %>
-                  <%= f.submit "更新" %>
-                <% end %>
-              </div>
-          <% end %>
-        </div>
+
+      <div class="card">
+        <div class="card-header text-center">投稿一覧</div>
+
+        <% @posts.each do |post| %>
+          <div class="card-body">
+
+            <%= link_to post_path(post) do %>
+              <h5 class="card-title text-dark"><%= post.title %></h5>
+            <% end %>
+
+            <div class="card-text">
+              <% post.lists.order(:position).each do |list| %>
+                <div>
+                  <%= form_with model:list, url:list_path(list.id) do |f| %>
+                    <%= f.check_box :checked %>
+                    <%= list.content %>
+                    <%= link_to move_higher_list_path(list) do %>
+                      <i class="fa-regular fa-square-caret-up"></i>
+                    <% end %>
+                    <%= link_to move_lower_list_path(list) do %>
+                      <i class="fa-regular fa-square-caret-down"></i>
+                    <% end %>
+                    <%= f.submit class: "btn btn-outline-success btn-sm rounded-pill mt-1" do %>
+                      保存
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+            <%= link_to edit_post_path(post.id),  class: "btn btn-outline-success btn-sm rounded-pill" do %>
+              <i class="fa-solid fa-gear"></i>
+            <% end %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>
