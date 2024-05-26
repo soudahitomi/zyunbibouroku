@@ -1,6 +1,6 @@
 <h1>ユーザー一覧</h1>
 <ul>
-  <% @users.each do |f| %>
+  <% @users.each do |user| %>
     <li>
       <%= user.name %> - <%= user.email %>
       <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %>

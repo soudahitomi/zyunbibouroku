@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-6 jscroll">
 
       <% @timeline.each do |post| %>
 
@@ -98,9 +98,7 @@
                     <%= link_to move_lower_list_path(list) do %>
                       <i class="fa-regular fa-square-caret-down"></i>
                     <% end %>
-                    <%= f.submit class: "btn btn-outline-success btn-sm rounded-pill mt-1" do %>
-                      保存
-                    <% end %>
+                    <%= f.submit "保存", class: "btn btn-outline-success btn-sm rounded-pill mt-1" %>
                   <% end %>
                 </div>
               <% end %>

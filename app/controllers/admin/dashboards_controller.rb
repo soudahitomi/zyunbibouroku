@@ -2,6 +2,6 @@ class Admin::DashboardsController < ApplicationController
   layout 'admin'
 
   def index
-    @users = Use.all
+    @users = User.all
   end
 end
