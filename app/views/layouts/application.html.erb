@@ -17,7 +17,7 @@
 
         <div class="col-7">
           <% if user_signed_in? %>
-            <%= link_to root_path do %>
+            <%= link_to posts_path do %>
               <img src="/assets/logo.jpg" width="150" height="150" alt="">
             <% end %>
           <% end %>
@@ -25,10 +25,7 @@
 
         <div class="col-1 mt-5">
           <% if user_signed_in? %>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark" %>
-          <% else %>
-            <%= link_to "新規登録", new_user_registration_path %>
-            <%= link_to "ログイン", new_user_session_path %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-success btn-sm rounded-pill" %>
           <% end %>
         </div>
 

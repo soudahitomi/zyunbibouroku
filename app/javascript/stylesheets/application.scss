@@ -1,5 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
-// ページ表示部分を非表示
+//ページ表示部分を非表示
 // nav.pagination {
   // display: none;
 // }
+nav.pagination {
+  display: none;
+}

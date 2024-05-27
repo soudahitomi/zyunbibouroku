@@ -1,4 +1,6 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <%= link_to  new_session_path(resource_name), class: "btn btn-outline-success btn-sm rounded-pill mt-1" do %><br />
+    アカウントをお持ちの方はこちら
+  <% end %>
 <% end %>
 
