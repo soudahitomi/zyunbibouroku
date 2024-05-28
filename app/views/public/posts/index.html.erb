@@ -1,39 +1,47 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
+
       <div class="pull-left">
+
         <%= image_tag current_user.get_profile_image(90,90), class: "rounded-circle" %>
+
         <span><%= current_user.name %></span>
+
+        <% unless current_user.guest_user? %>
+          <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-success btn-sm rounded-pill" do %>
+            <i class="fa-solid fa-gear"></i>
+          <% end %>
+        <% end %>
+
         <div>
-          <span>フォロー</span>
-          <span><%= link_to current_user.followings.count, user_followings_path(current_user), class: "text-dark" %></span>
-        </div>
-        <div>
-          <span>フォロワー</span>
-          <span><%= link_to current_user.followers.count, user_followers_path(current_user), class: "text-dark" %></span>
+
+          <div>
+            <span>フォロー</span>
+            <span><%= link_to current_user.followings.count, user_followings_path(current_user), class: "text-dark" %></span>
+          </div>
+
+          <div>
+            <span>フォロワー</span>
+            <span><%= link_to current_user.followers.count, user_followers_path(current_user), class: "text-dark" %></span>
+          </div>
+
         </div>
 
         <%= link_to new_post_path, class: "btn btn-outline-success btn-lg rounded-pill mt-5" do %>
           <i class="fa-regular fa-message"></i> 投稿
         <% end %>
-        <div>
-          <%= link_to favorites_user_path(current_user), class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-            <i class="fa-regular fa-heart"></i> 通知
-          <% end %>
-        </div>
-        <div>
-          <%= link_to notifications_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-            <i class="fa-regular fa-bell"></i> いいね一覧
-          <% end %>
-        </div>
 
-          <% unless current_user.guest_user? %>
-              <li>
-                <%= link_to "編集", edit_user_path(current_user.id) %>
-              </li>
-          <% end %>
-      </div>
-    </div>
+        <%= link_to favorites_user_path(current_user), class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
+          <i class="fa-regular fa-heart"></i> 通知
+        <% end %>
+
+        <%= link_to notifications_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
+          <i class="fa-regular fa-bell"></i> いいね一覧
+        <% end %>
+
+      </div><!--pull-left閉じタグ-->
+    </div><!--col-2閉じタグ-->
 
     <div class="col-6 jscroll">
 
@@ -50,36 +58,47 @@
               </div>
 
               <div class="col-10">
+
                 <div>
                   <%= post.user.name %>
                 </div>
+
                 <%= link_to post_path(post.id), class: "text-dark" do %>
                   <div>
                     <strong><%= post.title %></strong>
                   </div>
                 <% end %>
-                  <div>
-                    <% post.lists.each do |list| %>
-                      <div>
-                        <%= list.content %>
-                      </div>
-                    <% end %>
-                  </div>
-              </div>
 
-            </div><!--row-->
-          </div><!--card-body-->
-        </div><!--card-->
-      <% end %>
+                <div>
+                  <% post.lists.each do |list| %>
+                    <div>
+                      <%= list.content %>
+                    </div>
+                  <% end %>
+                </div>
+
+              </div><!--col-10閉じタグ-->
+
+            </div><!--row閉じタグ-->
+          </div><!--card-body閉じタグ-->
+        </div><!--card閉じタグ-->
+
+      <% end %><!--@timeline.each do |post|-->
+
       <%= paginate @timeline %>
-    </div><!--col-6閉-->
+
+    </div><!--col-6閉タグ-->
 
     <div class="col-4">
 
       <div class="card">
-        <div class="card-header text-center">投稿一覧</div>
+
+        <div class="card-header text-center">
+          投稿一覧
+        </div>
 
         <% @posts.each do |post| %>
+
           <div class="card-body">
 
             <%= link_to post_path(post) do %>
@@ -87,29 +106,37 @@
             <% end %>
 
             <div class="card-text">
+
               <% post.lists.order(:position).each do |list| %>
                 <div>
                   <%= form_with model:list, url:list_path(list.id) do |f| %>
                     <%= f.check_box :checked %>
                     <%= list.content %>
+
                     <%= link_to move_higher_list_path(list), class: "text-success" do %>
                       <i class="fa-regular fa-square-caret-up"></i>
                     <% end %>
+
                     <%= link_to move_lower_list_path(list), class: "text-success" do %>
                       <i class="fa-regular fa-square-caret-down"></i>
                     <% end %>
+
                     <%= f.submit "保存", class: "btn btn-outline-success btn-sm rounded-pill mt-1" %>
                   <% end %>
-                </div>
-              <% end %>
-            </div>
 
-          </div>
-            <%= link_to edit_post_path(post.id),  class: "btn btn-outline-success btn-sm rounded-pill" do %>
+                </div>
+
+              <% end %>
+
+            </div><!--card-text閉じタグ-->
+          </div><!--card-text閉タグ-->
+
+            <%= link_to edit_post_path(post.id), class: "btn btn-outline-success btn-sm rounded-pill" do %>
               <i class="fa-solid fa-gear"></i>
             <% end %>
+
       <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+      </div><!--card閉タグ-->
+    </div><!--col-4閉タグ-->
+  </div><!--row閉タグ-->
+</div><!--container閉タグ-->
