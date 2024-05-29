@@ -43,8 +43,8 @@
       </div><!--pull-left閉じタグ-->
     </div><!--col-2閉じタグ-->
 
-    <div class="col-6 jscroll">
-
+    <div class="col-6 ">
+    <div class="jscroll">
       <% @timeline.each do |post| %>
 
         <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
@@ -86,7 +86,7 @@
       <% end %><!--@timeline.each do |post|-->
 
       <%= paginate @timeline %>
-
+</div>
     </div><!--col-6閉タグ-->
 
     <div class="col-4">
