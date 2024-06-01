@@ -1,18 +1,29 @@
-<h1>Post#edit</h1>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
 
+      <%= render 'posts_error_messages', post: @post %>
 
-<%= form_with model: @post, local: true do |f| %>
+      <h1 class="mb-5">投稿編集</h1>
+      <%= form_with model: @post, local: true do |f| %>
 
-  <h3>リスト名</h3>
-  <%= f.text_field :title %>
+        <h3>投稿タイトル</h3>
+        <%= f.text_field :title %>
 
-  <div>
-    <%= f.fields_for :lists do |t| %>
-      <% render 'list_fields', f: t %>
-    <% end %>
-    <%= link_to_add_association "追加", f, :lists %>
-  </div>
+        <div>
+          <h3 class="mt-3">投稿内リスト</h3>
+            <%= f.fields_for :lists do |t| %>
+              <% render 'list_fields', f: t %>
+            <% end %>
 
-  <%= f.submit "更新" %>
+            <%= link_to_add_association f, :lists do %>
+              <i class="fa-solid fa-square-plus"></i>
+            <% end %>
+        </div>
 
-<% end %>
+        <%= f.submit "更新する", class: "btn btn-outline-success btn-sm rounded-pill mt-2" %>
+
+      <% end %>
+    </div><!--mx-auto-->
+  </div><!--row-->
+</div><!--container-->

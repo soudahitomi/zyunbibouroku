@@ -2,6 +2,8 @@
   <div class="row">
     <div class="mx-auto">
 
+      <%= render 'posts_error_messages', post: @post %>
+
       <h1 class="mb-5">投稿</h1>
       <%= form_with model: @post, local: true do |f| %>
 
@@ -19,9 +21,9 @@
             <% end %>
         </div>
 
-          <%= f.submit "投稿"%>
+          <%= f.submit "投稿する", class: "btn btn-outline-success btn-sm rounded-pill mt-2" %>
 
       <% end %>
-    </div><!--mx-autoの閉じタグ-->
-  </div><!--rowの閉じタグ-->
-</div><!--container閉じタグ-->
+    </div><!--mx-auto-->
+  </div><!--row-->
+</div><!--container-->

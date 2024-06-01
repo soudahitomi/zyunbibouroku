@@ -1,48 +1,9 @@
 <div class="container">
   <div class="row">
+
     <div class="col-2">
-
-      <div class="pull-left">
-
-        <%= image_tag current_user.get_profile_image(90,90), class: "rounded-circle" %>
-
-        <span><%= current_user.name %></span>
-
-        <% unless current_user.guest_user? %>
-          <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-success btn-sm rounded-pill" do %>
-            <i class="fa-solid fa-gear"></i>
-          <% end %>
-        <% end %>
-
-        <div>
-
-          <div>
-            <span>フォロー</span>
-            <span><%= link_to current_user.followings.count, user_followings_path(current_user), class: "text-dark" %></span>
-          </div>
-
-          <div>
-            <span>フォロワー</span>
-            <span><%= link_to current_user.followers.count, user_followers_path(current_user), class: "text-dark" %></span>
-          </div>
-
-        </div>
-
-        <%= link_to new_post_path, class: "btn btn-outline-success btn-lg rounded-pill mt-5" do %>
-          <i class="fa-regular fa-message"></i> 投稿
-        <% end %>
-
-        <%= link_to favorites_user_path(current_user), class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-          <i class="fa-regular fa-heart"></i> 通知
-            <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
-        <% end %>
-
-        <%= link_to notifications_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-          <i class="fa-regular fa-bell"></i> いいね一覧
-        <% end %>
-
-      </div><!--pull-left閉じタグ-->
-    </div><!--col-2閉じタグ-->
+        <%= render 'public/users/info' %>
+    </div><!--col-2-->
 
     <div class="col-6 ">
       <div class="jscroll">
@@ -78,18 +39,18 @@
                     <% end %>
                   </div>
 
-                </div><!--col-10閉じタグ-->
+                </div><!--col-10-->
 
-              </div><!--row閉じタグ-->
-            </div><!--card-body閉じタグ-->
-          </div><!--card閉じタグ-->
+              </div><!--row-->
+            </div><!--card-body-->
+          </div><!--card-->
 
         <% end %><!--@timeline.each do |post|-->
 
         <%= paginate @timeline %>
 
       </div><!--jscroll-->
-    </div><!--col-6閉タグ-->
+    </div><!--col-6-->
 
     <div class="col-4">
 
@@ -130,15 +91,15 @@
 
               <% end %>
 
-            </div><!--card-text閉じタグ-->
-          </div><!--card-text閉タグ-->
+            </div><!--card-text-->
+          </div><!--card-body-->
 
             <%= link_to edit_post_path(post.id), class: "btn btn-outline-success btn-sm rounded-pill" do %>
               <i class="fa-solid fa-gear"></i>
             <% end %>
 
       <% end %>
-      </div><!--card閉タグ-->
-    </div><!--col-4閉タグ-->
-  </div><!--row閉タグ-->
-</div><!--container閉タグ-->
+      </div><!--card-->
+    </div><!--col-4-->
+  </div><!--row-->
+</div><!--container-->
