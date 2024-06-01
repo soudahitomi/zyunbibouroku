@@ -34,6 +34,7 @@
 
         <%= link_to favorites_user_path(current_user), class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
           <i class="fa-regular fa-heart"></i> 通知
+            <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
         <% end %>
 
         <%= link_to notifications_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
@@ -44,49 +45,50 @@
     </div><!--col-2閉じタグ-->
 
     <div class="col-6 ">
-    <div class="jscroll">
-      <% @timeline.each do |post| %>
+      <div class="jscroll">
+        <% @timeline.each do |post| %>
 
-        <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
-          <div class="card-body">
-            <div class="row">
+          <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
+            <div class="card-body">
+              <div class="row">
 
-              <div class="col-2">
-                <%= link_to user_path(post.id) do %>
-                  <%= image_tag post.user.get_profile_image(80,80), class: "rounded-circle" %>
-                <% end %>
-              </div>
-
-              <div class="col-10">
-
-                <div>
-                  <%= post.user.name %>
-                </div>
-
-                <%= link_to post_path(post.id), class: "text-dark" do %>
-                  <div>
-                    <strong><%= post.title %></strong>
-                  </div>
-                <% end %>
-
-                <div>
-                  <% post.lists.each do |list| %>
-                    <div>
-                      <%= list.content %>
-                    </div>
+                <div class="col-2">
+                  <%= link_to user_path(post.id) do %>
+                    <%= image_tag post.user.get_profile_image(80,80), class: "rounded-circle" %>
                   <% end %>
                 </div>
 
-              </div><!--col-10閉じタグ-->
+                <div class="col-10">
 
-            </div><!--row閉じタグ-->
-          </div><!--card-body閉じタグ-->
-        </div><!--card閉じタグ-->
+                  <div>
+                    <%= post.user.name %>
+                  </div>
 
-      <% end %><!--@timeline.each do |post|-->
+                  <%= link_to post_path(post.id), class: "text-dark" do %>
+                    <div>
+                      <strong><%= post.title %></strong>
+                    </div>
+                  <% end %>
 
-      <%= paginate @timeline %>
-</div>
+                  <div>
+                    <% post.lists.each do |list| %>
+                      <div>
+                        <%= list.content %>
+                      </div>
+                    <% end %>
+                  </div>
+
+                </div><!--col-10閉じタグ-->
+
+              </div><!--row閉じタグ-->
+            </div><!--card-body閉じタグ-->
+          </div><!--card閉じタグ-->
+
+        <% end %><!--@timeline.each do |post|-->
+
+        <%= paginate @timeline %>
+
+      </div><!--jscroll-->
     </div><!--col-6閉タグ-->
 
     <div class="col-4">
