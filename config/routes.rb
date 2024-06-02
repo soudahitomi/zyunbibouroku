@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
-  
+
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :posts, only: [:new, :create, :edit, :update, :show, :index] do
+    resources :posts, only: [:new, :create, :edit, :update, :show, :index, :destroy] do
     resources :comments,only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end

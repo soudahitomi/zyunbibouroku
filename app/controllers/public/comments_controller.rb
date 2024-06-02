@@ -15,8 +15,7 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to root_path
-    # リダイレクト先は投稿の詳細ページにする
+    redirect_to post_path(params[:post_id])
   end
 
   private

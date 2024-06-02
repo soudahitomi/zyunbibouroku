@@ -10,8 +10,9 @@
         <h3>投稿タイトル</h3>
         <%= f.text_field :title %>
 
+        <h3 class="mt-3">投稿内リスト</h3>
+
         <div>
-          <h3 class="mt-3">投稿内リスト</h3>
             <%= f.fields_for :lists do |t| %>
               <% render 'list_fields', f: t %>
             <% end %>
@@ -22,7 +23,10 @@
         </div>
 
         <%= f.submit "更新する", class: "btn btn-outline-success btn-sm rounded-pill mt-2" %>
+      <% end %>
 
+      <%= link_to  post_path(@post.id), method: :delete, class: "btn btn-outline-danger btn-sm rounded-pill mt-5"  do %>
+        投稿を削除する
       <% end %>
     </div><!--mx-auto-->
   </div><!--row-->
