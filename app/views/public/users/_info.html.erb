@@ -9,7 +9,6 @@
         <% end %>
 
         <div>
-
           <div>
             <span>フォロー</span>
             <span><%= link_to current_user.followings.count, user_followings_path(current_user), class: "text-dark" %></span>
@@ -19,7 +18,6 @@
             <span>フォロワー</span>
             <span><%= link_to current_user.followers.count, user_followers_path(current_user), class: "text-dark" %></span>
           </div>
-
         </div>
 
         <%= link_to new_post_path, class: "btn btn-outline-success btn-lg rounded-pill mt-5" do %>

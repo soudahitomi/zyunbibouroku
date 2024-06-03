@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  has_one_attached :profile_image
+
 
   def follow(user)
     active_relationships.create(followed_id: user.id)
@@ -42,12 +42,16 @@ class User < ApplicationRecord
     email == GUEST_USER_EMAIL
   end
 
-  def get_profile_image(width, height)
-    unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+  has_one_attached :profile_image
+
+  ActiveRecord::Base.transaction do# 同時アクセスによるデータベースがロックされるエラーを防ぐ
+    def get_profile_image(width, height)
+      unless profile_image.attached?
+        file_path = Rails.root.join('app/assets/images/no_image.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      end
+      profile_image.variant(resize_to_limit: [width, height]).processed
     end
-    profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
   def self.search_for(word, method)
