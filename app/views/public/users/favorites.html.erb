@@ -1,3 +1,52 @@
-<% @favorite_posts.each do |post| %>
-  <%= link_to post.title, post_path(post.id) %>
-<% end %>
+<div class="container">
+  <div class="row">
+
+    <div class="col-2">
+        <%= render 'public/users/info' %>
+    </div><!--col-2-->
+
+    <div class="col-6 ">
+      <h2>いいね一覧</h2>
+      <div class="jscroll">
+
+        <% @favorite_posts.each do |post| %>
+          <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-2">
+                  <%= link_to user_path(post.id) do %>
+                    <%= image_tag post.user.get_profile_image(80,80), class: "rounded-circle" %>
+                  <% end %>
+                </div>
+
+                <div class="col-10">
+                  <%= post.user.name %>
+
+                  <%= link_to post_path(post.id), class: "text-dark" do %>
+                    <div>
+                      <strong><%= post.title %></strong>
+                    </div>
+                  <% end %>
+
+                  <% post.lists.each do |list| %>
+                    <div>
+                      <%= list.content %>
+                    </div>
+                  <% end %>
+                </div><!--col-10-->
+              </div><!--row-->
+            </div><!--card-body-->
+          </div><!--card-->
+        <% end %><!--@favorite_posts.each do |post|-->
+
+        <%= paginate @posts %>
+
+      </div><!--jscroll-->
+    </div><!--col-6-->
+
+    <div class="col-4">
+      <%= render 'public/posts/user_post_index', posts: @posts %>
+    </div><!--col-4-->
+  </div><!--row-->
+</div><!--container-->
