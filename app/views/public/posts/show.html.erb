@@ -28,7 +28,9 @@
             <% end %>
 
             <% if @post.user == current_user %>
-              <%= link_to "削除", post_path(@post.id), method: :delete %>
+              <%= link_to post_path(@post.id), method: :delete, class: "btn btn-outline-danger btn-sm rounded-pill mt-2 mb-2"  do %>
+                投稿を削除する
+              <% end %>
             <% end %>
 
           <div class="card-footer text-body-secondary">
