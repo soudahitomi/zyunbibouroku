@@ -1,7 +1,7 @@
 <% if @model == 'user' %>
     <h3>キーワード"<%= @word %>" の検索結果 </h3>
-  <%= render 'users/index', users: @records %>
-<% elsif @model == 'book' %>
+  <%= render 'public/users/index', users: @records %>
+<% elsif @model == 'post' %>
     <h3>キーワード"<%= @word %>" の検索結果</h3>
-  <%= render 'posts/index', posts: @records %>
+  <%= render 'public/posts/index', posts: @records %>
 <% end %>

@@ -1,0 +1,9 @@
+     <% posts.each do |post| %>
+        <%= image_tag post.user.get_profile_image(50,50) %>
+        <%= post.user.name %>
+        <%= post.title %>
+        フォロー数: <%= post.user.followings.count %>
+        フォロワー数: <%= post.user.followers.count %>
+
+         <%#= link_to "Show", user %>
+     <% end %>
