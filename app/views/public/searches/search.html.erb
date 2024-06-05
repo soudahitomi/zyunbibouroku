@@ -1,7 +1,25 @@
-<% if @model == 'user' %>
-    <h3>キーワード"<%= @word %>" の検索結果 </h3>
-  <%= render 'public/users/index', users: @records %>
-<% elsif @model == 'post' %>
-    <h3>キーワード"<%= @word %>" の検索結果</h3>
-  <%= render 'public/posts/index', posts: @records %>
-<% end %>
+<div class="container">
+  <div class="row">
+
+    <div class="col-2">
+        <%= render 'public/users/info' %>
+    </div><!--col-2-->
+
+    <div class="col-6 ">
+      <div class="jscroll">
+
+        <% if @model == 'user' %>
+          <h3>ユーザー"<%= @word %>" の検索結果 </h3>
+          <%= render 'public/users/index', users: @records %>
+        <% elsif @model == 'post' %>
+          <h3>投稿 "<%= @word %>" の検索結果</h3>
+          <%= render 'public/posts/index', posts: @records %>
+        <% end %>
+      </div><!--jscroll-->
+    </div><!--col-6-->
+
+    <div class="col-4">
+      <%= render 'public/posts/user_post_index', posts: @posts %>
+    </div><!--col-4-->
+  </div><!--row-->
+</div><!--container-->

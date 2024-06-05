@@ -4,7 +4,7 @@ class Public::SearchesController < ApplicationController
     @model = params[:model]
     @word = params[:word]
     @method = params[:method]
-
+    @posts = current_user.posts
     if @model  == "user"
       @records = User.search_for(@word, @method)
     else
