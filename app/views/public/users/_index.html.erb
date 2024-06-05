@@ -1,11 +1,22 @@
-ユーザー一覧ですよ
-検索で呼び出す共通ファイル
+<% users.each do |user| %>
+          <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
+            <div class="card-body">
+              <div class="row">
 
-     <% users.each do |user| %>
+                <div class="col-2">
+
         <%= image_tag user.get_profile_image(50,50) %>
+        </div>
+
+        <div class="col-10">
         <%= user.name %>
         フォロー数: <%= user.followings.count %>
         フォロワー数: <%= user.followers.count %>
+                </div><!--col-10-->
+              </div><!--row-->
+            </div><!--card-body-->
+          </div><!--card-->
 
-         <%#= link_to "Show", user %>
      <% end %>
+
+     
