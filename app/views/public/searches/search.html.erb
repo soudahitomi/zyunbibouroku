@@ -15,11 +15,13 @@
           <h3>投稿 "<%= @word %>" の検索結果</h3>
           <%= render 'public/posts/index', posts: @records %>
         <% end %>
+
       </div><!--jscroll-->
     </div><!--col-6-->
 
     <div class="col-4">
       <%= render 'public/posts/user_post_index', posts: @posts %>
     </div><!--col-4-->
+
   </div><!--row-->
 </div><!--container-->

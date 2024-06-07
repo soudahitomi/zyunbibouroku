@@ -10,7 +10,7 @@
           <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
             <div class="card-body">
 
-              <%= user.get_profile_image(50,50) %> - <%= user.name %> - <%= user.email %>
+              <%= image_tag user.get_profile_image(50,50), class: "rounded-circle" %> - <%= user.name %> - <%= user.email %>
               <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 
             </div><!--card-body-->

@@ -2,15 +2,31 @@
   <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
     <div class="card-body">
       <div class="row">
+
         <div class="col-2">
+          <%= link_to user_path(post.user.id) do %>
             <%= image_tag post.user.get_profile_image(50,50) %>
+          <% end %>
         </div>
 
         <div class="col-10">
-          <%= post.user.name %>
-          <%= post.title %>
-          フォロー数: <%= post.user.followings.count %>
-          フォロワー数: <%= post.user.followers.count %>
+          <div class="row">
+
+            <div class="mr-3">
+              <%= post.user.name %>
+            </div>
+
+            フォロー <%= post.user.followings.count %>
+            フォロワー <%= post.user.followers.count %>
+
+          </div><!--row-->
+
+          <div class="row mx-auto">
+            <%= link_to post_path(post.id) do %>
+              <%= post.title %>
+            <% end %>
+          </div><!--row mx-auto-->
+
         </div><!--col-10-->
       </div><!--row-->
     </div><!--card-body-->
