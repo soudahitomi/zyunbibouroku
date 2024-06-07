@@ -13,21 +13,23 @@
         <h3 class="mt-3">投稿内リスト</h3>
 
         <div>
-            <%= f.fields_for :lists do |t| %>
-              <% render 'list_fields', f: t %>
-            <% end %>
+          <%= f.fields_for :lists do |t| %>
+            <% render 'list_fields', f: t %>
+          <% end %>
 
-            <%= link_to_add_association f, :lists do %>
-              <i class="fa-solid fa-square-plus"></i>
-            <% end %>
+          <%= link_to_add_association f, :lists do %>
+            <i class="fa-solid fa-square-plus"></i>
+          <% end %>
         </div>
 
         <%= f.submit "更新する", class: "btn btn-outline-success btn-sm rounded-pill mt-2" %>
+
       <% end %>
 
       <%= link_to  post_path(@post.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-sm rounded-pill mt-5"  do %>
         投稿を削除する
       <% end %>
+
     </div><!--mx-auto-->
   </div><!--row-->
 </div><!--container-->

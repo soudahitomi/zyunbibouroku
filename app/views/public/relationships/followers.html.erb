@@ -6,6 +6,7 @@
     </div><!--col-2-->
 
     <div class="col-6 ">
+
       <h2>フォロワー 一覧</h2>
       <div class="jscroll">
 
@@ -14,12 +15,15 @@
         <% else %>
           <p>フォロワーはいません</p>
         <% end %>
+
         <%= paginate @users %>
+
       </div><!--jscroll-->
     </div><!--col-6-->
 
     <div class="col-4">
       <%= render 'public/posts/user_post_index', posts: @posts %>
     </div><!--col-4-->
+
   </div><!--row-->
 </div><!--container-->

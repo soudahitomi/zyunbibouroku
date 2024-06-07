@@ -1,9 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto">
+
       <h1>プロフィール編集</h1>
 
       <%= form_with model: @user do |f| %>
+
         <div class="mt-5">
           <label for="inputName">名前</label>
           <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: @user.name %>
@@ -17,6 +19,7 @@
         <div class="text-right">
           <%= f.submit "登録" , class:"btn btn-outline-success btn-sm rounded-pill mt-2" %>
         </div>
+
       <% end %>
     </div><!--mx-auto-->
   </div><!--row-->

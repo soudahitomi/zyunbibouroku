@@ -20,6 +20,7 @@
                 </div>
 
                 <div class="col-10">
+
                   <%= post.user.name %>
 
                   <%= link_to post_path(post.id), class: "text-dark" do %>
@@ -33,6 +34,7 @@
                       <%= list.content %>
                     </div>
                   <% end %>
+
                 </div><!--col-10-->
               </div><!--row-->
             </div><!--card-body-->
@@ -47,5 +49,6 @@
     <div class="col-4">
       <%= render 'public/posts/user_post_index', posts: @posts %>
     </div><!--col-4-->
+
   </div><!--row-->
 </div><!--container-->
