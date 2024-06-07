@@ -19,7 +19,7 @@
       </div>
 
       <% if current_user.following?(@user) %>
-        <%= link_to user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-success btn-sm rounded-pill mt-5" do %>
+        <%= link_to user_relationships_path(@user.id), method: :delete, data: { confirm: 'フォローを外す？' }, class: "btn btn-outline-success btn-sm rounded-pill mt-5" do %>
           フォローを外す
         <% end %>
       <% else %>

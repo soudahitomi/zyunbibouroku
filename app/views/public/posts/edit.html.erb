@@ -25,7 +25,7 @@
         <%= f.submit "更新する", class: "btn btn-outline-success btn-sm rounded-pill mt-2" %>
       <% end %>
 
-      <%= link_to  post_path(@post.id), method: :delete, class: "btn btn-outline-danger btn-sm rounded-pill mt-5"  do %>
+      <%= link_to  post_path(@post.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-sm rounded-pill mt-5"  do %>
         投稿を削除する
       <% end %>
     </div><!--mx-auto-->
