@@ -2,6 +2,6 @@ class Admin::DashboardsController < ApplicationController
   layout 'admin'
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(4)
   end
 end

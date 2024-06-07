@@ -1,27 +1,35 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto mt-5">
 
-<%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
+      <h2>管理者ログイン</h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
 
-<%= render "admin/shared/links" %>
+      <div class="actions">
+        <%= f.submit "Log in", class: "btn btn-outline-success btn-sm rounded-pill mt-2" %>
+      </div>
+      <% end %>
+
+      <%= render "admin/shared/links" %>
+
+    </div><!--mx-autoの閉じタグ-->
+  </div><!--rowの閉じタグ-->
+</div><!--container閉じタグ-->

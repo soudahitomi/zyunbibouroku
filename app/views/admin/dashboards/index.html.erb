@@ -1,9 +1,25 @@
-<h1>ユーザー一覧</h1>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.name %> - <%= user.email %>
-      <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+
+    <h1>ユーザー 一覧</h1>
+
+      <div class="jscroll">
+
+        <% @users.each do |user| %>
+          <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
+            <div class="card-body">
+
+              <%= user.get_profile_image(50,50) %> - <%= user.name %> - <%= user.email %>
+              <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+
+            </div><!--card-body-->
+          </div><!--card-->
+        <% end %>
+
+        <%= paginate @users %>
+
+      </div><!--jscroll-->
+    </div><!--mx-autoの閉じタグ-->
+  </div><!--rowの閉じタグ-->
+</div><!--container閉じタグ-->
