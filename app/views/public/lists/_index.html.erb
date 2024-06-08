@@ -1,0 +1,36 @@
+<% lists.each do |list| %>
+  <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
+    <div class="card-body">
+      <div class="row">
+
+        <div class="col-2">
+          <%= link_to user_path(list.post.user.id) do %>
+            <%= image_tag list.post.user.get_profile_image(50,50) %>
+          <% end %>
+        </div>
+
+        <div class="col-10">
+          <div class="row">
+
+            <div class="mr-3">
+              <%= list.post.user.name %>
+            </div>
+
+          </div><!--row-->
+
+          <div class="row mx-auto">
+            <%= link_to post_path(list.post.id) do %>
+              <div>
+                <%= list.post.title %>
+              </div>
+              <div>
+                <%= list.content %>
+              </div>
+            <% end %>
+          </div><!--row mx-auto-->
+
+        </div><!--col-10-->
+      </div><!--row-->
+    </div><!--card-body-->
+  </div><!--card-->
+<% end %>

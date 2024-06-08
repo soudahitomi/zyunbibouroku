@@ -6,15 +6,18 @@
     </div><!--col-2-->
 
     <div class="col-6 ">
-      
+
       <div class="jscroll">
 
         <% if @model == 'user' %>
-          <h3>ユーザー"<%= @word %>" の検索結果 </h3>
-          <%= render 'public/users/index', users: @records %>
+          <h3>"<%= @word %>" が含まれるユーザー検索結果 </h3>
+          <%= render partial: 'public/users/index', locals: { users: @records, user: @user } %>
         <% elsif @model == 'post' %>
-          <h3>投稿 "<%= @word %>" の検索結果</h3>
+          <h3> "<%= @word %>"が含まれる投稿検索結果</h3>
           <%= render 'public/posts/index', posts: @records %>
+        <% else @model == 'list' %>
+          <h3>"<%= @word %>"が含まれる投稿内リストの検索結果</h3>
+          <%= render 'public/lists/index', lists: @records %>
         <% end %>
 
       </div><!--jscroll-->

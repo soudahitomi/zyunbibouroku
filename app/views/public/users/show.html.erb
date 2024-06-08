@@ -20,55 +20,49 @@
 
       </div>
 
-      <% if current_user != @user %>
+      <%= render 'public/users/btn', user: @user %>
 
-        <% if current_user.following?(@user) %>
-          <%= link_to user_relationships_path(@user.id), method: :delete, data: { confirm: 'フォローを外す？' }, class: "btn btn-outline-success btn-sm rounded-pill mt-5" do %>
-            フォローを外す
-          <% end %>
-        <% else %>
-          <%= link_to user_relationships_path(@user.id), method: :post, class: "btn btn-outline-success btn-sm rounded-pill mt-5" do %>
-            フォロー
-          <% end %>
-        <% end %>
-
-      <% end %>
     </div><!--col-2-->
 
     <div class="col-8 ofset-2">
       <div class="jscroll">
 
-        <% @posts.each do |post| %>
-          <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
-            <div class="card-body">
-              <div class="row">
+        <% if @posts.exists? %>
+          <% @posts.each do |post| %>
+            <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
+              <div class="card-body">
+                <div class="row">
 
-                <div class="col-2">
-                    <%= image_tag @user.get_profile_image(80,80), class: "rounded-circle" %>
-                </div>
+                  <div class="col-2">
+                      <%= image_tag @user.get_profile_image(80,80), class: "rounded-circle" %>
+                  </div>
 
-                <div class="col-10">
-                  <%= @user.name %>
+                  <div class="col-10">
+                    <%= @user.name %>
 
-                  <%= link_to post_path(post.id), class: "text-dark" do %>
-                    <div class="ml-5">
-                      <strong><%= post.title %></strong>
-                    </div>
-                  <% end %>
+                    <%= link_to post_path(post.id), class: "text-dark" do %>
+                      <div class="ml-5">
+                        <strong><%= post.title %></strong>
+                      </div>
+                    <% end %>
 
-                  <% post.lists.each do |list| %>
-                    <div class="ml-5">
-                      <%= list.content %>
-                    </div>
-                  <% end %>
-                </div><!--col-10-->
+                    <% post.lists.each do |list| %>
+                      <div class="ml-5">
+                        <%= list.content %>
+                      </div>
+                    <% end %>
+                  </div><!--col-10-->
 
-              </div><!--row-->
-            </div><!--card-body-->
-          </div><!--card-->
-        <% end %><!--@posts.each do |post|-->
+                </div><!--row-->
+              </div><!--card-body-->
+            </div><!--card-->
+          <% end %><!--@posts.each do |post|-->
 
-        <%= paginate @posts %>
+          <%= paginate @posts %>
+
+        <% else %>
+          <p>このユーザの投稿はありません</p>
+        <% end %>
 
       </div><!--jscroll-->
     </div><!--col-8 ofset-2-->
