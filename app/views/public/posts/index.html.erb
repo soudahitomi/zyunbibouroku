@@ -30,7 +30,7 @@
                     </div>
                   </div>
 
-                  <div class="row mx-auto">
+                  <div class="row ml-3">
                     <%= link_to post_path(post.id), class: "text-dark" do %>
                       <div>
                         <strong><%= post.title %></strong>
@@ -38,7 +38,7 @@
                     <% end %>
                   </div>
 
-                  <div class="row mx-auto">
+                  <div class="row ml-3">
                     <% post.lists.each do |list| %>
                       <div>
                         <%= list.content %>
