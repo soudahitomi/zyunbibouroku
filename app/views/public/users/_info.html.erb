@@ -20,15 +20,19 @@
           </div>
         </div>
 
-        <%= link_to new_post_path, class: "btn btn-outline-success btn-lg rounded-pill mt-5" do %>
+        <%= link_to posts_path, class: "btn btn-outline-success btn-lg rounded-pill mt-5" do %>
+           <i class="fa-solid fa-house"></i> home
+        <% end %>
+
+        <%= link_to new_post_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
           <i class="fa-regular fa-message"></i> 投稿
         <% end %>
 
         <%= link_to notifications_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-          <i class="fa-regular fa-heart"></i> 通知
+          <i class="fa-regular fa-bell"></i> 通知
             <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
         <% end %>
 
         <%= link_to favorites_user_path(current_user), class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-          <i class="fa-regular fa-bell"></i> いいね一覧
+          <i class="fa-regular fa-heart"></i> いいね一覧
         <% end %>

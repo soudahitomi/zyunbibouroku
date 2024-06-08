@@ -38,21 +38,41 @@
                   </div>
 
                   <div class="col-10">
-                    <%= @user.name %>
+                    <div class="row">
 
-                    <%= link_to post_path(post.id), class: "text-dark" do %>
-                      <div class="ml-5">
-                        <strong><%= post.title %></strong>
+                      <div class="col-6">
+                        <%= @user.name %>
                       </div>
-                    <% end %>
 
-                    <% post.lists.each do |list| %>
-                      <div class="ml-5">
-                        <%= list.content %>
+                      <div class="col-6">
+                        <%= post.created_at.strftime('%Y/%m/%d') %>
+                        <% if post.user == current_user %>
+                          <%= link_to post_path(post.user.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-sm rounded-pill mt-2 mb-2" do %>
+                            投稿を削除する
+                          <% end %>
+                        <% end %>
                       </div>
-                    <% end %>
+
+                    </div>
+
+
+                    <div class="row">
+                      <%= link_to post_path(post.id), class: "text-dark" do %>
+                        <div class="ml-5">
+                          <strong><%= post.title %></strong>
+                        </div>
+                      <% end %>
+                    </div><!--row-->
+
+                    <div class="row">
+                      <% post.lists.each do |list| %>
+                        <div class="ml-5">
+                          <%= list.content %>
+                        </div>
+                      <% end %>
+                    </div>
+
                   </div><!--col-10-->
-
                 </div><!--row-->
               </div><!--card-body-->
             </div><!--card-->

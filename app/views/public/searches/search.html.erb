@@ -11,7 +11,7 @@
 
         <% if @model == 'user' %>
           <h3>"<%= @word %>" が含まれるユーザー検索結果 </h3>
-          <%= render partial: 'public/users/index', locals: { users: @records, user: @user } %>
+          <%= render 'public/users/index',users: @records %>
         <% elsif @model == 'post' %>
           <h3> "<%= @word %>"が含まれる投稿検索結果</h3>
           <%= render 'public/posts/index', posts: @records %>

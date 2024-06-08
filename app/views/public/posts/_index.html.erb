@@ -12,18 +12,22 @@
         <div class="col-10">
           <div class="row">
 
-            <div class="mr-3">
+            <div class="col-6">
               <%= post.user.name %>
             </div>
 
-            フォロー <%= post.user.followings.count %>
-            フォロワー <%= post.user.followers.count %>
+            <div class="col-6">
+              フォロー <%= post.user.followings.count %>
+              フォロワー <%= post.user.followers.count %>
+            </div>
 
           </div><!--row-->
 
           <div class="row mx-auto">
             <%= link_to post_path(post.id) do %>
-              <%= post.title %>
+              <div class="text-dark">
+                <%= post.title %>
+              </div>
             <% end %>
           </div><!--row mx-auto-->
 

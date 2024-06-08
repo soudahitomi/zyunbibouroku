@@ -21,19 +21,30 @@
 
                 <div class="col-10">
 
-                  <%= post.user.name %>
-
-                  <%= link_to post_path(post.id), class: "text-dark" do %>
-                    <div>
-                      <strong><%= post.title %></strong>
+                  <div class="row">
+                    <div class="col-6">
+                      <%= post.user.name %>
                     </div>
-                  <% end %>
-
-                  <% post.lists.each do |list| %>
-                    <div>
-                      <%= list.content %>
+                    <div class="col-6">
+                      <%= post.created_at.strftime('%Y/%m/%d') %>
                     </div>
-                  <% end %>
+                  </div>
+
+                  <div class="row mx-auto">
+                    <%= link_to post_path(post.id), class: "text-dark" do %>
+                      <div>
+                        <strong><%= post.title %></strong>
+                      </div>
+                    <% end %>
+                  </div>
+
+                  <div class="row mx-auto">
+                    <% post.lists.each do |list| %>
+                      <div>
+                        <%= list.content %>
+                      </div>
+                    <% end %>
+                  </div>
 
                 </div><!--col-10-->
               </div><!--row-->
@@ -47,7 +58,10 @@
     </div><!--col-6-->
 
     <div class="col-4">
+
       <%= render 'public/posts/user_post_index', posts: @posts %>
+
+
     </div><!--col-4-->
 
   </div><!--row-->
