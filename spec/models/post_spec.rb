@@ -39,5 +39,25 @@ RSpec.describe 'Postモデルのテスト', type: :model do
         expect(Post.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
+    context 'Listモデルとの関係' do
+      it 'N:1となっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(Post.reflect_on_association(:lists).macro).to eq :has_many
+      end
+    end
+    context 'Commentモデルとの関係' do
+      it 'N:1となっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(Post.reflect_on_association(:comments).macro).to eq :has_many
+      end
+    end
+    context 'Favoriteモデルとの関係' do
+      it 'N:1となっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(Post.reflect_on_association(:favorites).macro).to eq :has_many
+      end
+    end
+    context 'Notificationsモデルとの関係' do
+      it 'N:1となっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(Post.reflect_on_association(:notifications).macro).to eq :has_many
+      end
+    end
   end
 end
