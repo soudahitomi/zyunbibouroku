@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @timeline = Post.all.order(created_at: :desc).page(params[:page]).per(8)
-    @posts = current_user.posts
+    @posts = current_user.posts.order(created_at: :desc)
   end
 
   def edit

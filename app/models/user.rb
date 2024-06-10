@@ -14,7 +14,8 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-
+  validates :name, presence: true, length: { in: 1..30 }
+  validates :encrypted_password, uniqueness: true
 
   def follow(user)
     active_relationships.create(followed_id: user.id)

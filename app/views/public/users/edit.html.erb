@@ -2,6 +2,8 @@
   <div class="row">
     <div class="mx-auto">
 
+      <%= render 'users_error_messages', user: @user %>
+
       <h1>プロフィール編集</h1>
 
       <%= form_with model: @user do |f| %>
