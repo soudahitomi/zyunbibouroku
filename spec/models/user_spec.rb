@@ -30,17 +30,34 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         user.name = Faker::Lorem.characters(number: 31)
         is_expected.to eq false
       end
+    end
+
+    context 'emailに一意性がある'
       it '一意性があること', spec_category: "バリデーションとメッセージ表示" do
-        user.name = other_user.name
+        user.email = other_user.email
         is_expected.to eq false
       end
-    end
   end
 
   describe 'アソシエーションのテスト' do
     context 'Postモデルとの関係' do
       it '1:Nとなっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
         expect(User.reflect_on_association(:posts).macro).to eq :has_many
+      end
+    end
+    context 'Notificationモデルとの関係' do
+      it '1:Nとなっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(User.reflect_on_association(:notifications).macro).to eq :has_many
+      end
+    end
+    context 'Commentモデルとの関係' do
+      it '1:Nとなっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(User.reflect_on_association(:comments).macro).to eq :has_many
+      end
+    end
+    context 'Favoriteモデルとの関係' do
+      it '1:Nとなっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(User.reflect_on_association(:favorites).macro).to eq :has_many
       end
     end
   end
