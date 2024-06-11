@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Listモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
+    subject { list.valid? }
     let(:user) { create(:user) }
     let!(:post) { create(:post, user_id: user.id) }
     let!(:list) {  build(:list, post_id: post.id) }
