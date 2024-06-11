@@ -8,7 +8,6 @@ RSpec.describe 'Postモデルのテスト', type: :model do
 
     let(:user) { create(:user) }
     let!(:post) { build(:post, user_id: user.id) }
-
     context 'titleカラム' do
       it '空欄でないこと', spec_category: "バリデーションとメッセージ表示" do
         post.title = ''
