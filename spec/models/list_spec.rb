@@ -8,6 +8,7 @@ RSpec.describe 'Listモデルのテスト', type: :model do
     let(:user) { create(:user) }
     let!(:post) { create(:post, user_id: user.id) }
     let!(:list) {  build(:list, post_id: post.id) }
+    
     it "有効な投稿内容の場合は保存されるか" do
       expect(FactoryBot.build(:list,post_id: post.id, content: Faker::Lorem.characters(number: 50))).to be_valid
     end
