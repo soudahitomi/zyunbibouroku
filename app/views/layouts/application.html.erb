@@ -23,15 +23,14 @@
           <% end %>
         </div>
 
-        <div class="col-1 mt-5">
-          <% if user_signed_in? %>
+        <% if user_signed_in? %>
+          <div class="col-1 mt-5">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-success btn-sm rounded-pill" %>
-          <% end %>
-        </div>
-
-        <div class="col-4 mt-5">
-          <%= render "public/searches/form" %>
-        </div>
+          </div>
+          <div class="col-4 mt-5">
+            <%= render "public/searches/form" %>
+          </div>
+        <% end %>
 
       </div>
     </header>
