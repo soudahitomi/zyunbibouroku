@@ -2,7 +2,7 @@ class List < ApplicationRecord
   acts_as_list
   belongs_to :post
 
-  validates :content, length: { maximum: 50 }
+  validates :content, length: { maximum: 30 }
 
   def self.search_for(word, method)
     if method == 'perfect'

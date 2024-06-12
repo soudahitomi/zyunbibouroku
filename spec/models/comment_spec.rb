@@ -7,28 +7,28 @@ RSpec.describe 'Commentモデルのテスト', type: :model do
     subject { comment.valid? }
 
     let(:user) { create(:user) }
-    let!(:post) { build(:post, user_id: user.id) }
-    
+    let!(:post) { create(:post, user_id: user.id) }
+    let!(:comment) {  build(:comment, post_id: post.id, user_id: user.id) }
 
-    context 'titleカラム' do
+    context 'bodyカラム' do
       it '空欄でないこと', spec_category: "バリデーションとメッセージ表示" do
-        post.title = ''
+        comment.body = ''
         is_expected.to eq false
       end
       it '1文字以上であること: 0文字は×', spec_category: "バリデーションとメッセージ表示" do
-        post.title = Faker::Lorem.characters(number: 0)
+        comment.body = Faker::Lorem.characters(number: 0)
         is_expected.to eq false
       end
       it '1文字以上であること: 1文字は〇', spec_category: "バリデーションとメッセージ表示" do
-        post.title = Faker::Lorem.characters(number: 1)
+        comment.body = Faker::Lorem.characters(number: 1)
         is_expected.to eq true
       end
-      it '50文字以下であること: 50文字は〇', spec_category: "バリデーションとメッセージ表示" do
-        post.title = Faker::Lorem.characters(number: 50)
+      it '140文字以下であること: 140文字は〇', spec_category: "バリデーションとメッセージ表示" do
+        comment.body = Faker::Lorem.characters(number: 140)
         is_expected.to eq true
       end
-      it '50文字以下であること: 51文字は×', spec_category: "バリデーションとメッセージ表示" do
-        post.title = Faker::Lorem.characters(number: 51)
+      it '140文字以下であること: 141文字は×', spec_category: "バリデーションとメッセージ表示" do
+        comment.body = Faker::Lorem.characters(number: 141)
         is_expected.to eq false
       end
     end
@@ -37,7 +37,17 @@ RSpec.describe 'Commentモデルのテスト', type: :model do
   describe 'アソシエーションのテスト' do
     context 'Userモデルとの関係' do
       it 'N:1となっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
-        expect(Post.reflect_on_association(:user).macro).to eq :belongs_to
+        expect(Comment.reflect_on_association(:user).macro).to eq :belongs_to
+      end
+    end
+    context 'Postモデルとの関係' do
+      it 'N:1となっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(Comment.reflect_on_association(:post).macro).to eq :belongs_to
+      end
+    end
+    context 'Notificationモデルとの関係' do
+      it 'N:1となっている', spec_category: "基本的なアソシエーション概念と適切な変数設定" do
+        expect(Comment.reflect_on_association(:notification).macro).to eq :has_one
       end
     end
   end
