@@ -38,13 +38,11 @@
                     <% end %>
                   </div>
 
-                  <div class="row ml-3">
                     <% post.lists.each do |list| %>
-                      <div>
-                        〇 <%= list.content %>
-                      </div>
+                      <li class="ml-3">
+                        <%= list.content %>
+                      </li>
                     <% end %>
-                  </div>
 
                 </div><!--col-10-->
               </div><!--row-->

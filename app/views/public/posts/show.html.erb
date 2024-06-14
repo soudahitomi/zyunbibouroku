@@ -13,8 +13,10 @@
             <div class="row">
 
               <div class="col-10">
-                <%= image_tag @post.user.get_profile_image(70,70), class: "rounded-circle"  %>
-                <strong class="ml-4"><%= @post.user.name %></strong>
+                <%= link_to user_path(@post.user.id), class: "text-dark" do %>
+                  <%= image_tag @post.user.get_profile_image(70,70), class: "rounded-circle"  %>
+                  <strong class="ml-4"><%= @post.user.name %></strong>
+                <% end %>
               </div><!--col-10-->
 
               <div class="col-2">
@@ -34,13 +36,15 @@
               <%= link_to post_path(@post.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-sm rounded-pill mt-2 mb-2" do %>
                 投稿を削除する
               <% end %>
+              <%= link_to edit_post_path(@post.id), class: "btn btn-outline-success btn-sm rounded-pill mt-2 mb-2" do %>
+                投稿を編集する
+              <% end %>
             <% end %>
 
           <div class="card-footer text-body-secondary">
             <div class="row">
 
               <div class="col-6">
-
                 <% if @post.favorited_by?(current_user) %>
                   <p class="text-center">
                     <%= link_to post_favorite_path(@post), method: :delete do %>
@@ -49,23 +53,20 @@
                   </p>
                 <% else %>
                   <p class="text-center">
-                  <%= link_to post_favorite_path(@post), method: :post do %>
-                    <i class="fa-regular fa-heart"></i><%= @post.favorites.count %>
-                  <% end %>
-                </p>
+                    <%= link_to post_favorite_path(@post), method: :post do %>
+                      <i class="fa-regular fa-heart"></i><%= @post.favorites.count %>
+                    <% end %>
+                  </p>
                 <% end %>
-
               </div><!--col-6-->
 
               <div class="col-6">
                 <p class="text-center"><i class="fa-regular fa-comment-dots"></i>  <%= @post.comments.count %></p>
               </div><!--col-6-->
-
             </div><!--row-->
 
               <% @post.comments.each do |comment| %>
                 <div class="row">
-
                   <div class="col-6">
                     <%= image_tag comment.user.get_profile_image(50,50) %>
                     <%= comment.user.name %>
@@ -76,11 +77,9 @@
                       <%= comment.created_at.strftime('%Y/%m/%d') %>
                     </p>
                   </div>
-
                 </div><!--row-->
 
                 <div class="row ml-4 mb-3">
-
                   <div class="col-8">
                     <%= comment.body %>
                   </div>
@@ -98,13 +97,10 @@
 
 
             <%= form_with model: [@post, @comment] do |f| %>
-
               <%= f.text_area :body, rows: '3', cols: '80', placeholder: "コメントを記入" %>
-
               <div class="row">
                 <%= f.submit "送信", class: "btn btn-outline-success rounded-pill mt-2"  %>
               </div><!--row-->
-
             <% end %>
 
           </div><!--card-footer-->

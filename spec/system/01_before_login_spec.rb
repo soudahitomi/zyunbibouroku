@@ -154,7 +154,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
       visit new_user_session_path
       fill_in 'user[name]', with: user.name
       fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
+      click_button 'ログイン'#2アクションの時は必要なのかな？
       logout_link = find_all('a')[1].text
       logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
       click_link logout_link
