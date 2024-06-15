@@ -56,13 +56,13 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(page).to have_link '', href: user_followers_path(user)
       end
     end
-  end#投稿一覧画面のテスト
+  end#describe投稿一覧画面のテスト
 
   describe '投稿画面のテスト' do
     before do
       visit new_post_path
       fill_in 'post[title]', with: Faker::Lorem.characters(number: 5)
-      #fill_in 'list[content]', with: Faker::Lorem.characters(number: 20        )#1
+      fill_in 'post[lists_attributes][0][content]', with: Faker::Lorem.characters(number: 20)#　　　　1
     end
 
     context '投稿成功のテスト' do
@@ -74,10 +74,10 @@ describe '[STEP2] ユーザログイン後のテスト' do
         expect(current_path).to eq '/posts'
       end
     end
-  end#投稿画面のテスト'
+  end#describe投稿画面のテスト'
 
   describe '自分の投稿詳細画面のテスト' do
-    before do                                                                     #2ここで投稿の情報とかって入れないの？
+    before do
       visit post_path(post)
     end
 
@@ -91,9 +91,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
       it '投稿のtitleが表示される' do
         expect(page).to have_content post.title
       end
-      # it '投稿のlistが表示される' do
-      #   expect(page).to have_content list.content                             #1
-      # end
+      it '投稿のlistが表示される' do
+       expect(page).to have_content list.content
+      end
       it '投稿の編集リンクが表示される' do
         expect(page).to have_link '投稿を編集する', href: edit_post_path(post)
       end
@@ -171,9 +171,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
       it 'title編集フォームが表示される' do
         expect(page).to have_field 'post[title]', with: post.title
       end
-      # it 'list編集フォームが表示される' do
-      #   expect(page).to have_field 'list[content]', with: list.content        #1
-      # end
+      it 'list編集フォームが表示される' do
+        expect(page).to have_field 'post[lists_attributes][0][content]', with: list.content
+      end
       it '更新するボタンが表示される' do
         expect(page).to have_button '更新する'
       end
@@ -182,23 +182,23 @@ describe '[STEP2] ユーザログイン後のテスト' do
     context '編集成功のテスト' do
       before do
         @post_old_title = post.title
-        #@list_old_content = list.content     #post.list.content?                 1
+        @list_old_content = list.content     #post.list.content?                 1
         fill_in 'post[title]', with: Faker::Lorem.characters(number: 4)
-        #fill_in 'list[content]', with: Faker::Lorem.characters(number: 19)       1
+        fill_in 'post[lists_attributes][0][content]', with: Faker::Lorem.characters(number: 19)
         click_button '更新する'
       end
 
       it 'titleが正しく更新される' do
         expect(post.reload.title).not_to eq @post_old_title
       end
-      # it 'contentが正しく更新される' do
-      #   expect(book.reload.body).not_to eq @list_old_content                    1
-      # end
+      it 'contentが正しく更新される' do
+        expect(list.reload.content).not_to eq @list_old_content
+      end
       it 'リダイレクト先が、投稿一覧画面になっている' do
         expect(current_path).to eq '/posts'
       end
     end
-  end#自分の投稿編集画面のテスト
+  end#describe自分の投稿編集画面のテスト
 
   describe '自分のユーザ詳細画面のテスト' do
     before do
@@ -212,12 +212,12 @@ describe '[STEP2] ユーザログイン後のテスト' do
       it '投稿一覧に自分の投稿のtitleが表示され、リンクが正しい' do
         expect(page).to have_link post.title, href: post_path(post)
       end
-      # it '投稿一覧に自分の投稿listのcontentが表示される' do                   1
-      #   expect(page).to have_content list.content
-      # end
+      it '投稿一覧に自分の投稿listのcontentが表示される' do
+        expect(page).to have_content list.content
+      end
     end
-  end
-# koko
+  end#describe自分のユーザ詳細画面のテスト
+
   describe '自分のユーザ情報編集画面のテスト' do
     before do
       visit edit_user_path(user)
