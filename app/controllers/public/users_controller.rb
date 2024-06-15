@@ -7,9 +7,12 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to posts_path
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to posts_path
+    else
+      render :edit
+    end
   end
 
   def show
