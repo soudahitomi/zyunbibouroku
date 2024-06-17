@@ -16,10 +16,11 @@
             <%= f.fields_for :lists do |t| %>
               <% render 'list_fields', f: t %>
             <% end %>
-
-            <%= link_to_add_association f, :lists do %>
+            <div>
+              <%= link_to_add_association f, :lists do %>
               <i class="fa-solid fa-square-plus"></i>
             <% end %>
+            </div>
           </div>
 
           <%= f.submit "投稿する", class: "btn btn-outline-success btn-sm rounded-pill mt-2" %>

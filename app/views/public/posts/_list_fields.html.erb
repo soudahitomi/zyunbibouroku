@@ -1,9 +1,9 @@
 <div class="nested-fields">
   <h1></h1><!--隙間のためのh1-->
-
+  <div class="field">
     <%= f.text_field :content, placeholder: "例）洗濯etc." %>
-
     <%= link_to_remove_association f do %>
       <i class="fa-solid fa-trash-can"></i>
     <% end %>
+  </div>
 </div>

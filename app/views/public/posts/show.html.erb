@@ -62,10 +62,26 @@
               </div><!--col-6-->
             </div><!--row-->
 
+            <%= form_with model: [@post, @comment] do |f| %>
+                <% if @error_comment.present? %>
+                  <%= @error_comment.errors.count %>件のエラーが発生しました
+                    <ul>
+                      <% @error_comment.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                <% end %>
+
+              <%= f.text_area :body, rows: '3', cols: '80', placeholder: "コメントを記入" %>
+              <div class="row">
+                <%= f.submit "送信", class: "btn btn-outline-success rounded-pill mt-2"  %>
+              </div><!--row-->
+            <% end %>
+
               <% @post.comments.order(created_at: :desc).each do |comment| %>
                 <div class="row">
                   <div class="col-6">
-                    <%= image_tag comment.user.get_profile_image(50,50) %>
+                    <%= image_tag comment.user.get_profile_image(50,50), class: "rounded-circle" %>
                     <%= comment.user.name %>
                   </div>
 
@@ -91,24 +107,6 @@
 
                 </div><!--row ml-4 mb-3-->
               <% end %>
-
-
-            <%= form_with model: [@post, @comment] do |f| %>
-
-                <% if @error_comment.present? %>
-                  <%= @error_comment.errors.count %>件のエラーが発生しました
-                    <ul>
-                      <% @error_comment.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                    </ul>
-                <% end %>
-
-              <%= f.text_area :body, rows: '3', cols: '80', placeholder: "コメントを記入" %>
-              <div class="row">
-                <%= f.submit "送信", class: "btn btn-outline-success rounded-pill mt-2"  %>
-              </div><!--row-->
-            <% end %>
 
           </div><!--card-footer-->
         </div><!--card-body-->

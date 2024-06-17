@@ -1,6 +1,7 @@
 class Public::NotificationsController < ApplicationController
     def index
       @notifications = current_user.notifications.order(create_at: :desc).page(params[:page]).per(10)
+      @notifications.update_all(read: true)
     end
 
     def update
