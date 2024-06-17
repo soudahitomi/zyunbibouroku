@@ -1,8 +1,5 @@
 <div class="container">
   <div class="row">
-
-    <%= render 'posts_error_messages', post: @post %>
-
     <div class="col-2">
         <%= render 'public/users/info' %>
     </div><!--col-2-->
@@ -65,7 +62,7 @@
               </div><!--col-6-->
             </div><!--row-->
 
-              <% @post.comments.each do |comment| %>
+              <% @post.comments.order(created_at: :desc).each do |comment| %>
                 <div class="row">
                   <div class="col-6">
                     <%= image_tag comment.user.get_profile_image(50,50) %>
@@ -97,6 +94,16 @@
 
 
             <%= form_with model: [@post, @comment] do |f| %>
+
+                <% if @error_comment.present? %>
+                  <%= @error_comment.errors.count %>件のエラーが発生しました
+                    <ul>
+                      <% @error_comment.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                <% end %>
+
               <%= f.text_area :body, rows: '3', cols: '80', placeholder: "コメントを記入" %>
               <div class="row">
                 <%= f.submit "送信", class: "btn btn-outline-success rounded-pill mt-2"  %>
