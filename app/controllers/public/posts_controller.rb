@@ -45,9 +45,7 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
-
   private
-
 
   def post_params
     params.require(:post).permit(:title, lists_attributes: [:id, :content, :_destroy])
@@ -59,5 +57,4 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path
     end
   end
-
 end

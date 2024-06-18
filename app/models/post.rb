@@ -1,10 +1,10 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :lists, dependent: :destroy
-  accepts_nested_attributes_for :lists, allow_destroy: true
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
+  accepts_nested_attributes_for :lists, allow_destroy: true
 
   validates :title, presence: true, length: { in: 1..50 }
 

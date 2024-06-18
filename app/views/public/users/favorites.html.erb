@@ -1,12 +1,10 @@
 <div class="container">
   <div class="row">
-
     <div class="col-2">
         <%= render 'public/users/info' %>
-    </div><!--col-2-->
+    </div>
 
     <div class="col-6 ">
-
       <h2>いいね一覧</h2>
       <div class="jscroll">
 
@@ -36,20 +34,17 @@
                     </div>
                   <% end %>
                 </div><!--col-10-->
-
               </div><!--row-->
             </div><!--card-body-->
           </div><!--card-->
         <% end %><!--@favorite_posts.each do |post|-->
 
         <%= paginate @posts %>
-
       </div><!--jscroll-->
     </div><!--col-6-->
 
     <div class="col-4">
       <%= render 'public/posts/user_post_index', posts: @posts %>
     </div><!--col-4-->
-
   </div><!--row-->
 </div><!--container-->

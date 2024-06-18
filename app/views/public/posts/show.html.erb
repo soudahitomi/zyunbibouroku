@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-2">
         <%= render 'public/users/info' %>
-    </div><!--col-2-->
+    </div>
 
     <div class="col-8 offset-1">
       <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
@@ -59,7 +59,7 @@
 
               <div class="col-6">
                 <p class="text-center"><i class="fa-regular fa-comment-dots"></i>  <%= @post.comments.count %></p>
-              </div><!--col-6-->
+              </div>
             </div><!--row-->
 
             <%= form_with model: [@post, @comment] do |f| %>
@@ -75,7 +75,7 @@
               <%= f.text_area :body, rows: '3', cols: '80', placeholder: "コメントを記入" %>
               <div class="row">
                 <%= f.submit "送信", class: "btn btn-outline-success rounded-pill mt-2"  %>
-              </div><!--row-->
+              </div>
             <% end %>
 
               <% @post.comments.order(created_at: :desc).each do |comment| %>
@@ -103,11 +103,10 @@
                         <i class="fa-solid fa-trash-can"></i>コメントを消す
                       <% end %>
                     <% end %>
-                  </div><!--col-4 pull-right-->
+                  </div>
 
                 </div><!--row ml-4 mb-3-->
               <% end %>
-
           </div><!--card-footer-->
         </div><!--card-body-->
       </div><!--card-->

@@ -6,5 +6,4 @@ class Public::Users::SessionsController < Devise::SessionsController
     redirect_to posts_path, notice: "guestuserでログインしました。"
   end
 
-
 end

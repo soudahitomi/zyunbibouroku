@@ -3,7 +3,6 @@
     <div class="mx-auto">
 
       <h2>新規登録</h2>
-
       <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user' do |f| %>
 
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -37,7 +36,6 @@
       <% end %>
 
       <%= render "public/devise/shared/links" %>
-
     </div><!--mx-autoの閉じタグ-->
   </div><!--rowの閉じタグ-->
 </div><!--container閉じタグ-->

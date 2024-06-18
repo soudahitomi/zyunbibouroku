@@ -12,7 +12,6 @@
           <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
             <div class="card-body">
               <div class="row">
-
                 <div class="col-2">
                   <%= link_to user_path(post.user.id) do %>
                     <%= image_tag post.user.get_profile_image(80,80), class: "rounded-circle" %>
@@ -28,7 +27,7 @@
                     <div class="col-6">
                       <%= post.created_at.strftime('%Y/%m/%d') %>
                     </div>
-                  </div>
+                  </div><!--row-->
 
                   <div class="row ml-3">
                     <%= link_to post_path(post.id), class: "text-dark" do %>
@@ -36,14 +35,13 @@
                         <strong><%= post.title %></strong>
                       </div>
                     <% end %>
-                  </div>
+                  </div><!--row-->
 
-                    <% post.lists.each do |list| %>
-                      <li class="ml-3">
-                        <%= list.content %>
-                      </li>
-                    <% end %>
-
+                  <% post.lists.each do |list| %>
+                    <li class="ml-3">
+                      <%= list.content %>
+                    </li>
+                  <% end %>
                 </div><!--col-10-->
               </div><!--row-->
             </div><!--card-body-->

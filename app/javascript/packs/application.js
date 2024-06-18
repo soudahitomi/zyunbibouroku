@@ -27,7 +27,7 @@ var jscrollOption = {
     loadingHtml: '読み込み中・・・',
     autoTrigger: true,
     padding: 20,
-     nextSelector: 'span.next:last a',//.next a これでもできた
+     nextSelector: 'span.next:last a',
     contentSelector: '.jscroll'
 
 };

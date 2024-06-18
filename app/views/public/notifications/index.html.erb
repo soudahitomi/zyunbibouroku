@@ -1,14 +1,13 @@
 <div class="container">
   <div class="row">
-
     <div class="col-2">
         <%= render 'public/users/info' %>
     </div><!--col-2-->
 
     <div class="col-10">
       <div class="jscroll">
-        <% @notifications.each do |notification| %>
 
+        <% @notifications.each do |notification| %>
           <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
             <div class="card-body">
               <div class="row">
@@ -17,9 +16,9 @@
             </div><!--card-body-->
           </div><!--card-->
         <% end %>
+
         <%= paginate @notifications %>
       </div><!--jscroll-->
     </div><!--col-10-->
-
   </div><!--row-->
 </div><!--container-->

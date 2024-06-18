@@ -1,35 +1,35 @@
 <%= image_tag current_user.get_profile_image(90,90), class: "rounded-circle" %>
+<div>
+  <%= current_user.name %>
+</div>
+
+<% unless current_user.guest_user? %>
+  <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-success btn-sm rounded-pill" do %>
+    <i class="fa-solid fa-gear"></i>
+  <% end %>
+<% end %>
+
+<div>
+  <span>フォロー <%= link_to current_user.followings.count, user_followings_path(current_user), class: "text-dark" %></span>
+
   <div>
-    <%= current_user.name %>
+    <span>フォロワー <%= link_to current_user.followers.count, user_followers_path(current_user), class: "text-dark" %></span>
   </div>
+</div>
 
-  <% unless current_user.guest_user? %>
-    <%= link_to edit_user_path(current_user.id), class: "btn btn-outline-success btn-sm rounded-pill" do %>
-      <i class="fa-solid fa-gear"></i>
-    <% end %>
-  <% end %>
+<%= link_to posts_path, class: "btn btn-outline-success btn-lg rounded-pill mt-5" do %>
+  <i class="fa-solid fa-house"></i> home
+<% end %>
 
-  <div>
-    <span>フォロー <%= link_to current_user.followings.count, user_followings_path(current_user), class: "text-dark" %></span>
+<%= link_to new_post_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
+  <i class="fa-regular fa-message"></i> 投稿
+<% end %>
 
-    <div>
-      <span>フォロワー <%= link_to current_user.followers.count, user_followers_path(current_user), class: "text-dark" %></span>
-    </div>
-  </div>
+<%= link_to notifications_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
+  <i class="fa-regular fa-bell"></i> 通知
+  <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
+<% end %>
 
-  <%= link_to posts_path, class: "btn btn-outline-success btn-lg rounded-pill mt-5" do %>
-    <i class="fa-solid fa-house"></i> home
-  <% end %>
-
-  <%= link_to new_post_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-    <i class="fa-regular fa-message"></i> 投稿
-  <% end %>
-
-  <%= link_to notifications_path, class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-    <i class="fa-regular fa-bell"></i> 通知
-    <span class="badge badge-danger"><%= current_user.notifications.where(read: false).count %></span>
-  <% end %>
-
-  <%= link_to favorites_user_path(current_user), class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
-    <i class="fa-regular fa-heart"></i> いいね一覧
-  <% end %>
+<%= link_to favorites_user_path(current_user), class: "btn btn-outline-success btn-lg rounded-pill mt-2" do %>
+  <i class="fa-regular fa-heart"></i> いいね一覧
+<% end %>

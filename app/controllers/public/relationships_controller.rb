@@ -23,5 +23,4 @@ class Public::RelationshipsController < ApplicationController
     @users = user.followers.page(params[:page]).per(5)
     @posts = current_user.posts
   end
-
 end
