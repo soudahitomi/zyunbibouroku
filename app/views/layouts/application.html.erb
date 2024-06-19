@@ -18,7 +18,8 @@
         <div class="col-7">
           <% if user_signed_in? %>
             <%= link_to posts_path do %>
-              <%= image_tag asset_path("logo.jpg", width="150" height="150" alt="") %>
+              <%= image_tag asset_path("logo.jpg") %>
+              <!--<img src="/assets/logo.jpg" width="150" height="150" alt="">-->
             <% end %>
           <% end %>
         </div>
