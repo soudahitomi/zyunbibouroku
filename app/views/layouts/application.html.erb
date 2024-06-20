@@ -15,15 +15,13 @@
     <header>
       <div class="row">
 
-        <div class="col-7">
-          <% if user_signed_in? %>
+        <% if user_signed_in? %>
+          <div class="col-7">
             <%= link_to posts_path do %>
               <%= image_tag asset_path("logo.jpg"), class: "servise-logo" %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
 
-        <% if user_signed_in? %>
           <div class="col-1 mt-5">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-success btn-sm rounded-pill" %>
           </div>
