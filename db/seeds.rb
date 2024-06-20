@@ -32,7 +32,3 @@ end
 Post.find_or_create_by!(title: "勉強順") do |post|
   post.user = lucas
 end
-
-Adimn.find_or_create_by!(email: "admin@example.com") do |admin|
-  admin.password = "password"
-end
