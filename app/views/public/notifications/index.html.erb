@@ -8,14 +8,18 @@
       <h2>通知一覧</h2>
       <div class="jscroll">
 
-        <% @notifications.each do |notification| %>
-          <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
-            <div class="card-body">
-              <div class="row">
-                <%= link_to notification_message(notification), notification_path(notification), method: :patch, class: "dropdown-item" %>
-              </div><!--row-->
-            </div><!--card-body-->
-          </div><!--card-->
+        <% if @notifications.exists? %>
+          <% @notifications.each do |notification| %>
+            <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
+              <div class="card-body">
+                <div class="row">
+                  <%= link_to notification_message(notification), notification_path(notification), method: :patch, class: "dropdown-item" %>
+                </div><!--row-->
+              </div><!--card-body-->
+            </div><!--card-->
+          <% end %>
+        <% else %>
+          通知はありません
         <% end %>
 
         <%= paginate @notifications %>
