@@ -8,7 +8,7 @@
       <h2>いいね一覧</h2>
       <div class="jscroll">
 
-        <% if @favorite_posts.exists? %>
+        <% if @favorite_posts.empty? %>
           <% @favorite_posts.each do |post| %>
             <div class="card mt-3 mb-3 shadow-sm bg-white rounded">
               <div class="card-body">
