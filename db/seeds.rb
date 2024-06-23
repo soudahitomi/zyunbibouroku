@@ -21,7 +21,7 @@ lucas = User.find_or_create_by!(email: "lucas@example.com") do |user|
   user.password = "password"
 end
 
-Post.find_or_create_by!(title: "やること") do |post|
+post1 = Post.find_or_create_by!(title: "やること") do |post|
   post.user = olivia
 end
 
@@ -31,4 +31,8 @@ end
 
 Post.find_or_create_by!(title: "勉強順") do |post|
   post.user = lucas
+end
+
+List.find_or_create_by!(content: "勉強順") do |list|
+  list.post_id = post1.id
 end
