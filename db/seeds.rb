@@ -25,14 +25,22 @@ post1 = Post.find_or_create_by!(title: "やること") do |post|
   post.user = olivia
 end
 
-Post.find_or_create_by!(title: "買い物リスト") do |post|
+post2 = Post.find_or_create_by!(title: "買い物リスト") do |post|
   post.user = james
 end
 
-Post.find_or_create_by!(title: "勉強順") do |post|
+post3 = Post.find_or_create_by!(title: "勉強順") do |post|
   post.user = lucas
 end
 
 List.find_or_create_by!(content: "勉強順") do |list|
   list.post_id = post1.id
+end
+
+List.find_or_create_by!(content: "玉ねぎ、にんじん") do |list|
+  list.post_id = post2.id
+end
+
+List.find_or_create_by!(content: "勉強順") do |list|
+  list.post_id = post3.id
 end
