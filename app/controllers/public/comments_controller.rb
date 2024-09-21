@@ -5,7 +5,6 @@ class Public::CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.post_id = @post.id
     if comment.save
-      flash[:notice] = 'コメントしました。'
       redirect_to post_path(@post.id)
     else
       @error_comment = comment
