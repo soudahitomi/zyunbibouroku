@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :log_in_user?, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -22,16 +23,10 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    unless @post.user == current_user
-      redirect_to posts_path
-    end
   end
 
   def update
     @post = Post.find(params[:id])
-    unless @post.user == current_user
-      redirect_to posts_path
-    end
     if @post.update(post_params)
       redirect_to posts_path
     else
@@ -56,5 +51,11 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, lists_attributes: [:id, :content, :_destroy])
+  end
+
+  def log_in_user?
+    unless @post.user == current_user
+      redirect_to posts_path
+    end
   end
 end
