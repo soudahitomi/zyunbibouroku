@@ -29,6 +29,9 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    unless @post.user == current_user
+      redirect_to posts_path
+    end
     if @post.update(post_params)
       redirect_to posts_path
     else
@@ -43,8 +46,10 @@ class Public::PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path
+    if post.user_id == current_user.id
+      post.destroy
+      redirect_to posts_path
+    end
   end
 
   private
