@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :is_matching_login_user
+  before_action :is_matching_login_user, only: [:create, :destroy]
   
   def create
     @post = Post.find(params[:post_id])
